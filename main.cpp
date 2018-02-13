@@ -134,7 +134,7 @@ int main(void)
     unsigned int buffer;
     glGenBuffers(1, &buffer);                                                   //I am getting buffer "ID"
     glBindBuffer(GL_ARRAY_BUFFER, buffer);                                      //This buffer is a ARRAY
-    glBufferData(GL_ARRAY_BUFFER, 6 * sizeof(float), position, GL_STATIC_DRAW); //Fill buffer with data from position
+    glBufferData(GL_ARRAY_BUFFER, 2 * 6 * sizeof(float), position, GL_STATIC_DRAW); //Fill buffer with data from position
     //which attrib you one enable in actual binded buffer array
     glEnableVertexAttribArray(0);
     //GL attributes telling how memory have to be interpreted
@@ -150,7 +150,7 @@ int main(void)
         /* Render here */
         glClear(GL_COLOR_BUFFER_BIT);
 
-        glDrawArrays(GL_TRIANGLES, 0, 3); //it will be drawing this what is selected (binded)
+        glDrawArrays(GL_TRIANGLES, 0, 6); //it will be drawing this what is selected (binded)
 
         /* Swap front and back buffers */
         glfwSwapBuffers(window);
