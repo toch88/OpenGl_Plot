@@ -112,6 +112,10 @@ int main(void)
     if (!glfwInit())
         return -1;
 
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR,3);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR,3);
+    glfwWindowHint(GLFW_OPENGL_ANY_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+
     /* Create a windowed mode window and its OpenGL context */
     window = glfwCreateWindow(640, 480, "Hello World", NULL, NULL);
     if (!window)
@@ -149,11 +153,15 @@ int main(void)
     static const unsigned int indices[] = {
         0, 1, 2,
         2, 3, 0};
+    unsigned int vao;
+    glGenVertexArrays(1,&vao);
+    glBindVertexArray(vao);
 
     unsigned int buffer;
-    glGenBuffers(1, &buffer);                                                   //I am getting buffer "ID"
-    glBindBuffer(GL_ARRAY_BUFFER, buffer);                                      //This buffer is a ARRAY
-    glBufferData(GL_ARRAY_BUFFER, 4 *2* sizeof(float), position, GL_STATIC_DRAW); //Fill buffer with data from position
+
+    glGenBuffers(1, &buffer);                                                       //I am getting buffer "ID"
+    glBindBuffer(GL_ARRAY_BUFFER, buffer);                                          //This buffer is a ARRAY
+    glBufferData(GL_ARRAY_BUFFER, 4 * 2 * sizeof(float), position, GL_STATIC_DRAW); //Fill buffer with data from position
     //which attrib you one enable in actual binded buffer array
     glEnableVertexAttribArray(0);
     //GL attributes telling how memory have to be interpreted
@@ -171,25 +179,34 @@ int main(void)
     glUseProgram(shader);
 
     int id = glGetUniformLocation(shader, "u_Color"); //I have to no location of my Uniform
-   
-
-    float r=0.0f; 
-    float inc =0.05f;
+    glBindVertexArray(0);
+    glUseProgram(0);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+    float r = 0.0f;
+    float inc = 0.05f;
 
     /* Loop until the user closes the window */
     while (!glfwWindowShouldClose(window))
     {
         /* Render here */
         glClear(GL_COLOR_BUFFER_BIT);
-         glUniform4f(id, r, 0.3f, 0.8f, 1.0f); //and set the varible
+
+        glUseProgram(shader);
+        glUniform4f(id, r, 0.3f, 0.8f, 1.0f); //and set the varible
+
+        
+        glBindVertexArray(vao);
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
+
         // glDrawArrays(GL_TRIANGLES, 0, 6); //it will be drawing this what is selected (binded)
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
-        if(r>1.0f)
-            inc =-0.05f;
-        else if(r<0.0f)
-            inc=0.05f;
+        if (r > 1.0f)
+            inc = -0.05f;
+        else if (r < 0.0f)
+            inc = 0.05f;
 
-        r+=inc;
+        r += inc;
 
         /* Swap front and back buffers */
         glfwSwapBuffers(window);
