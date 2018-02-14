@@ -4,6 +4,7 @@
 #include <string>
 #include <fstream>
 #include <sstream>
+#include <assert.h>
 
 struct ShaderProgramSource
 {
@@ -11,10 +12,27 @@ struct ShaderProgramSource
     std::string FragmentSource;
 };
 
+static void APIENTRY openglCallbackFunction(
+    GLenum source,
+    GLenum type,
+    GLuint id,
+    GLenum severity,
+    GLsizei length,
+    const GLchar *message,
+    const void *userParam)
+{
+    (void)source;
+    (void)type;
+    (void)id;
+    (void)severity;
+    (void)length;
+    (void)userParam;
+    fprintf(stderr, "%s\n", message);
+}
+
 static ShaderProgramSource ParseShader(const std::string &filepath)
 {
     std::ifstream stream(filepath);
-    std::cerr << "Error";
     std::string line;
     enum class ShaderType
     {
@@ -104,13 +122,17 @@ int main(void)
 
     /* Make the window's context current */
     glfwMakeContextCurrent(window);
-
+    glfwSwapInterval(1);
     if (glewInit() != GLEW_OK)
         std::cout << "Error!" << std::endl;
 
-    std::cout << glGetString(GL_VERSION) << std::endl;
+    // Enable the debug callback
+    glEnable(GL_DEBUG_OUTPUT);
+    glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);
+    glDebugMessageCallback(&openglCallbackFunction, nullptr);
+    glDebugMessageControl(GL_DONT_CARE, GL_DONT_CARE, GL_DONT_CARE, 0, NULL, true);
 
-    float position[] = {
+    static const float position[] = {
         -0.5f, //0
         -0.5f,
 
@@ -124,39 +146,50 @@ int main(void)
         0.5f,
     };
 
-    unsigned int indices[] = {
+    static const unsigned int indices[] = {
         0, 1, 2,
-        2, 3, 0
-    };
-
-
+        2, 3, 0};
 
     unsigned int buffer;
-    glGenBuffers(1, &buffer);                                                       //I am getting buffer "ID"
-    glBindBuffer(GL_ARRAY_BUFFER, buffer);                                          //This buffer is a ARRAY
-    glBufferData(GL_ARRAY_BUFFER, 8 * sizeof(float), position, GL_STATIC_DRAW); //Fill buffer with data from position
+    glGenBuffers(1, &buffer);                                                   //I am getting buffer "ID"
+    glBindBuffer(GL_ARRAY_BUFFER, buffer);                                      //This buffer is a ARRAY
+    glBufferData(GL_ARRAY_BUFFER, 4 *2* sizeof(float), position, GL_STATIC_DRAW); //Fill buffer with data from position
     //which attrib you one enable in actual binded buffer array
     glEnableVertexAttribArray(0);
     //GL attributes telling how memory have to be interpreted
     //Layout of memory !
     glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0);
 
-    unsigned int ibo; //index object buffer
-    glGenBuffers(1, &ibo);                                                       //I am getting buffer "ID"
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);                                          //This buffer is a ELEMENT_ARRAY
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER,  6 * sizeof(unsigned int), indices, GL_STATIC_DRAW); //Fill buffer with data from indices
+    unsigned int ibo;                                                                         //index object buffer
+    glGenBuffers(1, &ibo);                                                                    //I am getting buffer "ID"
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);                                               //This buffer is a ELEMENT_ARRAY
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, 6 * sizeof(unsigned int), indices, GL_STATIC_DRAW); //Fill buffer with data from indices
 
     ShaderProgramSource source = ParseShader("res/shaders/Basic.vert");
     unsigned int shader = CreateShader(source.VertexSource, source.FragmentSource);
+
     glUseProgram(shader);
+
+    int id = glGetUniformLocation(shader, "u_Color"); //I have to no location of my Uniform
+   
+
+    float r=0.0f; 
+    float inc =0.05f;
+
     /* Loop until the user closes the window */
     while (!glfwWindowShouldClose(window))
     {
         /* Render here */
         glClear(GL_COLOR_BUFFER_BIT);
+         glUniform4f(id, r, 0.3f, 0.8f, 1.0f); //and set the varible
+        // glDrawArrays(GL_TRIANGLES, 0, 6); //it will be drawing this what is selected (binded)
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
+        if(r>1.0f)
+            inc =-0.05f;
+        else if(r<0.0f)
+            inc=0.05f;
 
-       // glDrawArrays(GL_TRIANGLES, 0, 6); //it will be drawing this what is selected (binded)
-       glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
+        r+=inc;
 
         /* Swap front and back buffers */
         glfwSwapBuffers(window);

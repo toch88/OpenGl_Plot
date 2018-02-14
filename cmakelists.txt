@@ -12,6 +12,7 @@ find_library(GLFW3 libglfw3.a C:/msys64/mingw64/lib)
 find_library(GLEW glew32 C:/msys64/mingw64/lib)
 
 add_definitions(-DGLEW_STATIC)
+add_definitions(-D_WIN32=1)
 
 add_executable(Cherno_OpenGL main.cpp)
 message("======${OPENGL} =========== /n")
