@@ -5,6 +5,7 @@ Shader::Shader(const std::string &FilePath)
 {
     ShaderProgramSource source = ParseShader(FilePath);
     _RendererID = CreateShader(source.VertexSource, source.FragmentSource);
+    
 }
 Shader::~Shader()
 {
@@ -14,6 +15,7 @@ Shader::~Shader()
 unsigned int Shader::CreateShader(const std::string &vertexShader, const std::string &fragmentShader)
 {
     unsigned int program = glCreateProgram();
+
     unsigned int vs = CompileShader(GL_VERTEX_SHADER, vertexShader);
     unsigned int fs = CompileShader(GL_FRAGMENT_SHADER, fragmentShader);
 
@@ -33,6 +35,7 @@ unsigned int Shader::CompileShader(unsigned int type, const std::string &source)
 {
     unsigned int id = glCreateShader(type);
     const char *src = source.c_str();
+    
     glShaderSource(id, 1, &src, nullptr);
     glCompileShader(id);
     int result;
@@ -55,6 +58,7 @@ unsigned int Shader::CompileShader(unsigned int type, const std::string &source)
 ShaderProgramSource Shader::ParseShader(const std::string &filepath)
 {
     std::ifstream stream(filepath);
+    
     std::string line;
     enum class ShaderType
     {
@@ -65,8 +69,10 @@ ShaderProgramSource Shader::ParseShader(const std::string &filepath)
 
     std::stringstream ss[2];
     ShaderType type = ShaderType::NONE;
+     std::cout<<"LINIA"<<std::endl;
     while (getline(stream, line))
     {
+        
         if (line.find("#shader") != std::string::npos)
         {
             if (line.find("vertex") != std::string::npos)
@@ -79,6 +85,9 @@ ShaderProgramSource Shader::ParseShader(const std::string &filepath)
         else
         {
             ss[(int)type] << line << '\n';
+           
+            std::cout<<line<<std::endl;
+            
         }
     }
 

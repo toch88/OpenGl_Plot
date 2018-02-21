@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0.0)
-project(Cherno_OpenGL VERSION 0.0.0)
+project(One_Triangle VERSION 0.0.0)
 
 include(CTest)
 enable_testing()
@@ -16,19 +16,19 @@ add_definitions(-DGLEW_STATIC)
 add_definitions(-D_WIN32=1)
 set(SOURCE_DIR src/)
 set(SOURCE 
-${SOURCE_DIR}Renderer.cpp
 ${SOURCE_DIR}VertexBuffer.cpp
 ${SOURCE_DIR}IndexBuffer.cpp
 ${SOURCE_DIR}VertexArray.cpp
 ${SOURCE_DIR}VertexBufferLayout.cpp
 ${SOURCE_DIR}Shader.cpp
+${SOURCE_DIR}Renderer.cpp
 )
 
-add_executable(Cherno_OpenGL main.cpp ${SOURCE})
+add_executable(One_Triangle main.cpp ${SOURCE})
 message("======${OPENGL} =========== /n")
 message("------${GLFW3} ------------ /n")
 message("------${GLEW} ------------ /n")
-target_link_libraries(Cherno_OpenGL ${OPENGL} ${GLFW3} ${GLEW})
+target_link_libraries(One_Triangle ${OPENGL} ${GLFW3} ${GLEW})
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})

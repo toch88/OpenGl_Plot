@@ -1,18 +1,11 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
-#include <iostream>
-#include <string>
-#include <fstream>
-#include <sstream>
-#include <assert.h>
 #include "src/Renderer.h"
 #include "src/VertexBuffer.h"
-#include "src/IndexBuffer.h"
-#include "src/VertexArray.h"
-#include "src/Shader.h"
 
 int main(void)
 {
+
     GLFWwindow *window;
 
     /* Initialize the library */
@@ -24,7 +17,7 @@ int main(void)
     glfwWindowHint(GLFW_OPENGL_ANY_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
     /* Create a windowed mode window and its OpenGL context */
-    window = glfwCreateWindow(640, 480, "Hello World", NULL, NULL);
+    window = glfwCreateWindow(800, 600, "Hello World", NULL, NULL);
     if (!window)
     {
         glfwTerminate();
@@ -44,60 +37,61 @@ int main(void)
     glDebugMessageControl(GL_DONT_CARE, GL_DONT_CARE, GL_DONT_CARE, 0, NULL, true);
     {
         static const float position[] = {
-            -0.5f, //0
-            -0.5f,
-
-            0.5f, //1
-            -0.5f,
-
-            0.5f, //2
+            -0.5f, //v0
             0.5f,
 
-            -0.5f, //3
+            -0.5f, //v1
+            -0.5f,
+
+            0.5f, //v2
+            -0.5f};
+
+        static const float position2[] = {
+            0.5f, //v0
             0.5f,
+
+            -0.5f, //v1
+            0.5f,
+
+            0.5f, //v2
+            -0.5f
         };
 
         static const unsigned int indices[] =
             {
-                0, 1, 2,
-                2, 3, 0};
+                0,
+                1,
+                2,
+            };
+        unsigned int vao, vbo;
+        glGenVertexArrays(1, &vao);
+        glBindVertexArray(vao);
 
-        VertexArray va;
-        VertexBuffer vb(position, 4 * 2 * sizeof(float));
-        VertexBufferLayout layout;
-        layout.Push<float>(2);
-        va.AddBuffer(vb, layout);
-        IndexBuffer ib(indices, 6);
+        glGenBuffers(1, &vbo);
+        glBindBuffer(GL_ARRAY_BUFFER, vbo);
+        glBufferData(GL_ARRAY_BUFFER, sizeof(float)*3*2, position, GL_STATIC_DRAW_ARB);
+
+        glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2*sizeof(GLfloat), reinterpret_cast<void*>(0));
+        glEnableVertexAttribArray(0);
+
+        glBindBuffer(GL_ARRAY_BUFFER, vbo);
+        glBindVertexArray(0);
+
+
+
+
 
         Shader shader("res/shaders/Basic.vert");
         shader.Bind();
-        shader.SetUniform4f("u_Color", 0.8f, 0.3f, 0.8f, 1.0f);
-
-        float r = 0.0f;
-        float inc = 0.05f;
 
         /* Loop until the user closes the window */
         while (!glfwWindowShouldClose(window))
         {
-            /* Render here */
-            glClear(GL_COLOR_BUFFER_BIT);
+            glBindVertexArray(vao);
 
-            shader.Bind();
-            shader.SetUniform4f("u_Color", r, 0.3f, 0.8f, 1.0f);
+            glDrawArrays(GL_TRIANGLES,0,3);
 
-            va.Bind();
-            ib.Bind();
-
-            // glDrawArrays(GL_TRIANGLES, 0, 6); //it will be drawing this what is selected (binded)
-            glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
-
-            if (r > 1.0f)
-                inc = -0.05f;
-            else if (r < 0.0f)
-                inc = 0.05f;
-
-            r += inc;
-
+            glBindVertexArray(0);
             /* Swap front and back buffers */
             glfwSwapBuffers(window);
 

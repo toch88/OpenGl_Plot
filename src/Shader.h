@@ -1,4 +1,4 @@
-#pragma onec
+#pragma once
 
 #include <string>
 #include <GL/glew.h>
@@ -6,7 +6,6 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
-#include "Renderer.h"
 #include <unordered_map>
 
 struct ShaderProgramSource

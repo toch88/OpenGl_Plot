@@ -35,6 +35,8 @@
         "xutility": "cpp",
         "sstream": "cpp",
         "string_view": "cpp",
-        "string": "cpp"
+        "string": "cpp",
+        "array": "cpp",
+        "tuple": "cpp"
     }
 }
