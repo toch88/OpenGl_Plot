@@ -2,7 +2,6 @@ cmake_minimum_required(VERSION 3.0.0)
 project(One_Triangle VERSION 0.0.0)
 
 include(CTest)
-enable_testing()
 
 include_directories(C:/msys64/mingw64/include)
 include_directories(/src)
@@ -14,6 +13,8 @@ find_library(GLEW glew32 C:/msys64/mingw64/lib)
 
 add_definitions(-DGLEW_STATIC)
 add_definitions(-D_WIN32=1)
+
+
 set(SOURCE_DIR src/)
 set(SOURCE 
 ${SOURCE_DIR}VertexBuffer.cpp

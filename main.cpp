@@ -3,6 +3,7 @@
 #include "src/Renderer.h"
 #include "src/VertexBuffer.h"
 
+
 int main(void)
 {
 
@@ -71,10 +72,10 @@ int main(void)
         glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 3 * 3, position, GL_STATIC_DRAW_ARB);
 
         glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), reinterpret_cast<void *>(0));
-        glVertexAttribPointer(1, 1, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), reinterpret_cast<void *>(sizeof(GLfloat)*2));
+        glVertexAttribPointer(1, 1, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), reinterpret_cast<void *>(sizeof(GLfloat) * 2));
         glEnableVertexAttribArray(0);
         glEnableVertexAttribArray(1);
-        
+
         glBindVertexArray(0);
 
         unsigned int vao2, vbo2;
@@ -86,14 +87,16 @@ int main(void)
         glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 3 * 3, position2, GL_STATIC_DRAW_ARB);
 
         glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), reinterpret_cast<void *>(0));
-        glVertexAttribPointer(1, 1, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), reinterpret_cast<void *>(sizeof(GLfloat)*2));
+        glVertexAttribPointer(1, 1, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), reinterpret_cast<void *>(sizeof(GLfloat) * 2));
         glEnableVertexAttribArray(0);
         glEnableVertexAttribArray(1);
-        
+
         glBindVertexArray(0);
 
         Shader shader("res/shaders/Basic.vert");
         shader.Bind();
+
+        // init gui state
 
         /* Loop until the user closes the window */
         while (!glfwWindowShouldClose(window))
@@ -104,7 +107,7 @@ int main(void)
 
             glBindVertexArray(0);
 
-             glBindVertexArray(vao2);
+            glBindVertexArray(vao2);
 
             glDrawArrays(GL_TRIANGLES, 0, 3);
 
@@ -119,4 +122,6 @@ int main(void)
     //glDeleteProgram(program);
     glfwTerminate();
     return 0;
+
+    
 }
