@@ -1,42 +1,13 @@
-#include <GL/glew.h>
-#include <GLFW/glfw3.h>
+#include "src/DisplayMenager.h"
 #include "src/Renderer.h"
 #include "src/VertexBuffer.h"
-
 
 int main(void)
 {
 
-    GLFWwindow *window;
-
-    /* Initialize the library */
-    if (!glfwInit())
-        return -1;
-
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-    glfwWindowHint(GLFW_OPENGL_ANY_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-
-    /* Create a windowed mode window and its OpenGL context */
-    window = glfwCreateWindow(800, 600, "Hello World", NULL, NULL);
-    if (!window)
-    {
-        glfwTerminate();
-        return -1;
-    }
-
-    /* Make the window's context current */
-    glfwMakeContextCurrent(window);
-    glfwSwapInterval(1);
-    if (glewInit() != GLEW_OK)
-        std::cout << "Error!" << std::endl;
-
-    // Enable the debug callback
-    glEnable(GL_DEBUG_OUTPUT);
-    glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);
-    glDebugMessageCallback(openglCallbackFunction, nullptr);
-    glDebugMessageControl(GL_DONT_CARE, GL_DONT_CARE, GL_DONT_CARE, 0, NULL, true);
-    {
+    DisplayMenager dispMngr;
+    dispMngr.startup();    
+    
         static const float position[] = {
             -0.5f, //v0
             0.5f, 1,
@@ -99,7 +70,7 @@ int main(void)
         // init gui state
 
         /* Loop until the user closes the window */
-        while (!glfwWindowShouldClose(window))
+        while (!glfwWindowShouldClose(dispMngr.GetWindow()))
         {
             glBindVertexArray(vao);
 
@@ -113,15 +84,13 @@ int main(void)
 
             glBindVertexArray(0);
             /* Swap front and back buffers */
-            glfwSwapBuffers(window);
+            glfwSwapBuffers(dispMngr.GetWindow());
 
             /* Poll for and process events */
             glfwPollEvents();
         }
-    }
+    
     //glDeleteProgram(program);
     glfwTerminate();
     return 0;
-
-    
 }

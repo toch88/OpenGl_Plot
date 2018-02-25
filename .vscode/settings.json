@@ -37,6 +37,7 @@
         "string_view": "cpp",
         "string": "cpp",
         "array": "cpp",
-        "tuple": "cpp"
+        "tuple": "cpp",
+        "*.tcc": "cpp"
     }
 }

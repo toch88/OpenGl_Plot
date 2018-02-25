@@ -23,6 +23,7 @@ ${SOURCE_DIR}VertexArray.cpp
 ${SOURCE_DIR}VertexBufferLayout.cpp
 ${SOURCE_DIR}Shader.cpp
 ${SOURCE_DIR}Renderer.cpp
+${SOURCE_DIR}DisplayMenager.cpp
 )
 
 add_executable(One_Triangle main.cpp ${SOURCE})

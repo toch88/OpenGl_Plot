@@ -1,7 +1,7 @@
 #include "VertexArray.h"
 
 VertexArray::VertexArray()
-:_attrID(0), currentAttrIndex(0)
+    : _currentAttrID(0)
 {
     glGenVertexArrays(1, &_RendererID);
 }
@@ -16,20 +16,19 @@ void VertexArray::AddBuffer(const VertexBuffer &vb, const VertexBufferLayout &la
     vb.Bind();
     const auto &elements = layout.GetElements();
     unsigned int offset = (intptr_t)0;
-    std::cout<<_attrID<<std::endl;
 
-    for (unsigned int i = _attrID; i < elements.size()+_attrID; i++)
+    for (unsigned int i = 0; i < elements.size(); i++)
     {
-        const auto &element = elements[i];
-        //which attrib you one enable in actual binded buffer array
-        glEnableVertexAttribArray(i);
-        //GL attributes telling how memory have to be interpreted
-        //Layout of memory !
-        glVertexAttribPointer(i, element.count, element.type, element.normalized, layout.GetStrid(), reinterpret_cast<void*>(offset));
-        offset += element.count * VertexBufferElement::GetSizeOfType(element.type);
-        
+        const auto &element = elements[i];       
+        glVertexAttribPointer(this->_currentAttrID,
+                              element.count,
+                              element.type,
+                              element.normalized,
+                              layout.GetStrid(),
+                              reinterpret_cast<void *>(element.offset));                              
+        this->_currentAttrID++;
+        glEnableVertexAttribArray(this->_currentAttrID);    
     }
-    _attrID=elements.size()+_attrID;
 }
 
 void VertexArray::Bind() const

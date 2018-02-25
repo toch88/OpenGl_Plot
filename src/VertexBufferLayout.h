@@ -7,7 +7,8 @@ struct VertexBufferElement
 {
     unsigned int type;
     unsigned int count;    
-    unsigned char normalized;
+    unsigned char normalized;   
+    unsigned int offset; 
 
     static unsigned int GetSizeOfType(unsigned int type)
     {
@@ -29,15 +30,18 @@ class VertexBufferLayout
   private:
     std::vector<VertexBufferElement> _Elements;
     unsigned int _Stride;
+    unsigned int _offsetForNextElement;  
+    unsigned int _offset;  
 
   public:
     VertexBufferLayout()
-        : _Stride(0)
+        : _Stride(0), _offsetForNextElement(0), _offset(0)
     {
     }
 
     template <typename T>
     void Push(unsigned int count);
     inline const std::vector<VertexBufferElement> GetElements() const & { return _Elements; }
-    inline unsigned int GetStrid() const { return _Stride; }
+    inline unsigned int GetStrid() const { return this->_Stride; }   
+   
 };

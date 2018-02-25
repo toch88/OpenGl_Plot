@@ -3,17 +3,19 @@
 #include "VertexBuffer.h"
 #include "VertexBufferLayout.h"
 
-class VertexArray{
-    private:
-      unsigned int _RendererID; 
-      unsigned int _attrID;
-      unsigned int currentAttrIndex;
-    public:
-        VertexArray();
-        ~VertexArray();
+class VertexArray
+{
+private:
+  unsigned int _RendererID;
+  unsigned int _currentAttrID;
+ 
 
-        void AddBuffer(const VertexBuffer& vb, const VertexBufferLayout& layout);
+public:
+  VertexArray();
+  ~VertexArray();
 
-        void Bind() const;
-        void Unbind() const;
+  void AddBuffer(const VertexBuffer &vb, const VertexBufferLayout &layout);
+
+  void Bind() const;
+  void Unbind() const;
 };
