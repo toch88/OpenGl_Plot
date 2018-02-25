@@ -2,13 +2,11 @@
 #version 330 core 
 
 layout(location=0) in vec4 position;
-layout(location=1) in float i_color;
 
 out vec4 o_color;
 void main()
 {
-    gl_Position=position;
-    o_color=vec4(position.xyz, 0.0);
+    gl_Position=vec4(position.x, position.y, 0.0, 1.0);  
 
 };
 
@@ -22,6 +20,6 @@ in vec4 o_color;
 void main()
 {
 
-    color=o_color+vec4(0.2,0.2,0.2,1);
+    color=vec4(0.2,0.2,0.2,1);
     
 };

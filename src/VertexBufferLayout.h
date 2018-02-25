@@ -29,13 +29,12 @@ class VertexBufferLayout
 {
   private:
     std::vector<VertexBufferElement> _Elements;
-    unsigned int _Stride;
-    unsigned int _offsetForNextElement;  
+    unsigned int _Stride;      
     unsigned int _offset;  
 
   public:
     VertexBufferLayout()
-        : _Stride(0), _offsetForNextElement(0), _offset(0)
+        : _Stride(0), _offset(0)
     {
     }
 

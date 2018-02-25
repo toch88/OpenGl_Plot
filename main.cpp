@@ -1,95 +1,67 @@
 #include "src/DisplayMenager.h"
 #include "src/Renderer.h"
+#include "src/Shader.h"
 #include "src/VertexBuffer.h"
-
+#include "src/IndexBuffer.h"
 int main(void)
 {
 
     DisplayMenager dispMngr;
-    dispMngr.startup();    
-    
-        static const float position[] = {
-            -0.5f, //v0
-            0.5f, 1,
+    dispMngr.startup();
 
-            -0.5f, //v1
-            -0.5f, 0.5,
+    static const float position[] = {
+        -0.5f, //v0
+        0.5f,
 
-            0.5f, //v2
-            -0.5f, 0};
+        -0.5f, //v1
+        -0.5f,
 
-        static const float position2[] = {
-            0.5f, //v0
-            0.5f, 0.5,
+        0.5f, //v2
+        -0.5f,
 
-            -0.5f, //v1
-            0.5f, 1,
+        0.5,
+        0.5  //v3
+        };
 
-            0.5f, //v2
-            -0.5f, 0};
+    static const float position2[] = {
+        0.5f, //v0
+        0.5f, 0.5,
 
-        static const unsigned int indices[] =
-            {
-                0,
-                1,
-                2,
-            };
-        unsigned int vao, vbo;
-        glGenVertexArrays(1, &vao);
-        glBindVertexArray(vao);
+        -0.5f, //v1
+        0.5f, 1,
 
-        glGenBuffers(1, &vbo);
-        glBindBuffer(GL_ARRAY_BUFFER, vbo);
-        glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 3 * 3, position, GL_STATIC_DRAW_ARB);
+        0.5f, //v2
+        -0.5f, 0};
 
-        glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), reinterpret_cast<void *>(0));
-        glVertexAttribPointer(1, 1, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), reinterpret_cast<void *>(sizeof(GLfloat) * 2));
-        glEnableVertexAttribArray(0);
-        glEnableVertexAttribArray(1);
-
-        glBindVertexArray(0);
-
-        unsigned int vao2, vbo2;
-        glGenVertexArrays(1, &vao2);
-        glBindVertexArray(vao2);
-
-        glGenBuffers(1, &vbo2);
-        glBindBuffer(GL_ARRAY_BUFFER, vbo2);
-        glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 3 * 3, position2, GL_STATIC_DRAW_ARB);
-
-        glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), reinterpret_cast<void *>(0));
-        glVertexAttribPointer(1, 1, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), reinterpret_cast<void *>(sizeof(GLfloat) * 2));
-        glEnableVertexAttribArray(0);
-        glEnableVertexAttribArray(1);
-
-        glBindVertexArray(0);
-
-        Shader shader("res/shaders/Basic.vert");
-        shader.Bind();
-
-        // init gui state
-
-        /* Loop until the user closes the window */
-        while (!glfwWindowShouldClose(dispMngr.GetWindow()))
+    static const unsigned int indices[] =
         {
-            glBindVertexArray(vao);
+            0,1,2,
+            2,3,0            
+        };
 
-            glDrawArrays(GL_TRIANGLES, 0, 3);
+    VertexArray vao;
+    VertexBuffer vbo(position, sizeof(float) * 2 * 4);
 
-            glBindVertexArray(0);
+    VertexBufferLayout layout;
+    layout.Push<float>(2);
+    vao.AddBuffer(vbo, layout);
+    Shader shader("res/shaders/Basic.vert");
+    IndexBuffer ib(indices, 6);
+    Renderer renderer;
 
-            glBindVertexArray(vao2);
+    /* Loop until the user closes the window */
+    while (!glfwWindowShouldClose(dispMngr.GetWindow()))
+    {
 
-            glDrawArrays(GL_TRIANGLES, 0, 3);
+        renderer.Clear();
+        renderer.Draw(vao, ib, shader);
+        /* Swap front and back buffers */
+        glfwSwapBuffers(dispMngr.GetWindow());
 
-            glBindVertexArray(0);
-            /* Swap front and back buffers */
-            glfwSwapBuffers(dispMngr.GetWindow());
+        /* Poll for and process events */
+        glfwPollEvents();
+    }
 
-            /* Poll for and process events */
-            glfwPollEvents();
-        }
-    
     //glDeleteProgram(program);
     glfwTerminate();
     return 0;

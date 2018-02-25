@@ -12,4 +12,4 @@ class Renderer
     void Draw(const VertexArray &va, const IndexBuffer &ib, const Shader &shader) const;
 };
 
-void APIENTRY openglCallbackFunction(GLenum, GLenum, GLuint, GLenum, GLsizei, const GLchar *, const void *);
+
