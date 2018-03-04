@@ -1,7 +1,7 @@
 #pragma once
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
-
+#include <iostream>
 class VertexBuffer
 {
     private:
@@ -9,6 +9,7 @@ class VertexBuffer
     public:
         VertexBuffer(const void* data, unsigned int size);
         ~VertexBuffer();
+        inline toString(){std::cout<<"Vertex Buffer: "<<this->_RendererID<<std::endl;}
 
         void Bind() const;
         void Unbind() const;

@@ -38,6 +38,20 @@ class VertexBufferLayout
     {
     }
 
+    ~VertexBufferLayout(){
+        
+    }
+
+    inline toString(){
+        std::vector<VertexBufferElement>::iterator it=this->_Elements.begin();
+        std::cout<<"Elements :"<<std::endl;
+        while(it!=this->_Elements.end()){
+            std::cout<<it->normalized<<std::endl;
+            std::cout<<it->offset<<std::endl;
+            std::cout<<it->type<<std::endl;
+        }  
+    }
+
     template <typename T>
     void Push(unsigned int count);
     inline const std::vector<VertexBufferElement> GetElements() const & { return _Elements; }

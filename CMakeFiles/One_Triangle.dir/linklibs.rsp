@@ -1,0 +1,1 @@
+C:/msys64/usr/lib/w32api/libopengl32.a -Wl,-Bstatic -lglfw3 -Wl,-Bdynamic -lglew32 -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 

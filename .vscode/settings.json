@@ -38,6 +38,17 @@
         "string": "cpp",
         "array": "cpp",
         "tuple": "cpp",
-        "*.tcc": "cpp"
-    }
+        "*.tcc": "cpp",
+        "cctype": "cpp",
+        "clocale": "cpp",
+        "cwctype": "cpp",
+        "fstream": "cpp",
+        "memory": "cpp",
+        "optional": "cpp",
+        "map": "cpp",
+        "xtree": "cpp",
+        "algorithm": "cpp",
+        "xmemory": "cpp"
+    },
+    "C_Cpp.errorSquiggles": "Disabled"
 }

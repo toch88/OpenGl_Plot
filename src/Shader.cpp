@@ -68,8 +68,7 @@ ShaderProgramSource Shader::ParseShader(const std::string &filepath)
     };
 
     std::stringstream ss[2];
-    ShaderType type = ShaderType::NONE;
-     std::cout<<"LINIA"<<std::endl;
+    ShaderType type = ShaderType::NONE;    
     while (getline(stream, line))
     {
         
@@ -106,6 +105,7 @@ void Shader::Unbind() const
 //Set Uniforms
 void Shader::SetUniform4f(const std::string &name, float v0, float v1, float v2, float v3)
 {
+    this->Bind();
     GetUniformLocation(name);
     glUniform4f(_location, v0, v1, v2, v3); //and set the varible
 }
@@ -114,10 +114,11 @@ unsigned int Shader::GetUniformLocation(const std::string &name)
 {
     if (_UniformLocationCache.find(name) != _UniformLocationCache.end())
     {
-        _location = _UniformLocationCache[name];
+         this->_location = _UniformLocationCache[name];
     }
 
-    int _location = glGetUniformLocation(_RendererID, name.c_str()); //I have to no location of my Uniform
+    this->_location = glGetUniformLocation(this->_RendererID, name.c_str()); //I have to no location of my Uniform
+   
     if (_location == -1)
-        std::cout << "Warning uniform" << name << "doesn't exist" << std::endl;
+        std::cout << "Warning uniform " << name << " doesn't exist" << std::endl;
 }

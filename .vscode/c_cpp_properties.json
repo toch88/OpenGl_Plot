@@ -53,7 +53,10 @@
                 "${workspaceRoot}",
                 "C:/msys64/mingw64/include",
                 "C:/msys64/mingw64/include/*",
-                "${workspaceRoot}/src"
+                "${workspaceRoot}/src",
+                "${workspaceRoot}/src",
+                "${workspaceRoot}",
+                "C:/msys64/mingw64/include/c++/7.3.0"
             ],
             "defines": [
                 "_DEBUG",

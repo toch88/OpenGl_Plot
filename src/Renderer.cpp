@@ -1,11 +1,12 @@
 #include "Renderer.h"
-#include <iostream>
 
 
-void Renderer::Draw(const VertexArray &va, const IndexBuffer &ib, const Shader &shader) const
+void Renderer::Draw(std::shared_ptr<RawModel> rawModel, const IndexBuffer &ib, const Shader &shader) const
 {
-    shader.Bind();
-    va.Bind();
+    
+    rawModel->getVAO()->Bind();
+    shader.Bind();     
+
     ib.Bind();
 
     glDrawElements(GL_TRIANGLES, ib.GetCount(), GL_UNSIGNED_INT, nullptr);
