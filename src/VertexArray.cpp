@@ -46,7 +46,8 @@ void VertexArray::Unbind()
 void VertexArray::clearMapPtr(){
     
     for(std::pair<VertexBuffer* , VertexBufferLayout> element: *(this->_bufforsMap)){
-        element.first->Unbind();       
+        element.first->Unbind();  
+        delete(element.first);     
     } 
     /*
     std::map<VertexBuffer*, VertexBufferLayout>::iterator it = this->_bufforsMap->begin();

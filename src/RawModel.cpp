@@ -26,4 +26,16 @@ void RawModel::bind(){}
 
 RawModel::~RawModel(){
     
+    for(VertexArray* element: this->VAOs){
+        delete element;
+    }
+
+    for(IndexBuffer* element: this->IBOs){
+        delete(element);
+    }
+
+    for(Shader* element: this->Shaders){
+        delete(element);
+    }
+    
 }

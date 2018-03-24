@@ -5,6 +5,10 @@ include(CTest)
 
 include_directories(C:/msys64/mingw64/include)
 include_directories(/src)
+include_directories(/src/vendor/stb_image)
+include_directories(/src/vendor/glm)
+
+
 
 
 find_library(OPENGL libopengl32.a C:/msys64/usr/lib/w32api)
@@ -26,7 +30,9 @@ ${SOURCE_DIR}Renderer.cpp
 ${SOURCE_DIR}DisplayMenager.cpp
 ${SOURCE_DIR}RawModel.cpp
 ${SOURCE_DIR}Loader.cpp
-${SOURCE_DIR}Test.cpp
+${SOURCE_DIR}vendor/stb_image/stb_image.cpp
+${SOURCE_DIR}Texture.cpp
+${SOURCE_DIR}TexturedModel.cpp
 )
 
 add_executable(One_Triangle main.cpp ${SOURCE})

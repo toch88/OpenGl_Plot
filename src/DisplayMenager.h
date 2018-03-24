@@ -19,9 +19,16 @@ private:
     GLFWwindow* _window;
     unsigned int init(); 
     void enableDebug();
+    //Singleton so we have to disable all of public default constructor 
+    DisplayMenager();
+    DisplayMenager(DisplayMenager const&);
+    void operator=(DisplayMenager const&);    
 
 public:
-    DisplayMenager();
+    static DisplayMenager& getInstance(){
+        static DisplayMenager instance;
+        return instance;
+    }
     ~DisplayMenager();
     void startup();
     virtual void prepare();

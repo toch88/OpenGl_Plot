@@ -1,21 +1,22 @@
 #include "DisplayMenager.h"
 
-DisplayMenager::DisplayMenager(){
-
+DisplayMenager::DisplayMenager()
+{
 }
 
-DisplayMenager::~DisplayMenager(){
-
+DisplayMenager::~DisplayMenager()
+{
 }
 
-
-void DisplayMenager::startup(){
+void DisplayMenager::startup()
+{
     this->init();
     this->enableDebug();
     this->prepare();
 }
 
-void DisplayMenager::enableDebug(){
+void DisplayMenager::enableDebug()
+{
     // Enable the debug callback
     glEnable(GL_DEBUG_OUTPUT);
     glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);
@@ -34,7 +35,7 @@ unsigned int DisplayMenager::init()
 
     /* Create a windowed mode window and its OpenGL context */
     this->_window = glfwCreateWindow(800, 600, "Hello World", NULL, NULL);
-    if (!this->_window )
+    if (!this->_window)
     {
         glfwTerminate();
         return -1;
@@ -47,11 +48,12 @@ unsigned int DisplayMenager::init()
         std::cout << "Error!" << std::endl;
 }
 
-
-void DisplayMenager::prepare(){
-    
+void DisplayMenager::prepare()
+{
+    //SETUP THE BLENDING MODE r-(1-a) g-(1-a) b-(1-a) 
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glEnable(GL_BLEND);
 }
-
 
 void APIENTRY openglCallbackFunction(
     GLenum source,
@@ -68,6 +70,5 @@ void APIENTRY openglCallbackFunction(
     (void)severity;
     (void)length;
     (void)userParam;
-    fprintf(stderr, "%s\n\n", message);
-   
+    fprintf(stderr, "%s\n\n%d", message, severity);
 }

@@ -110,6 +110,15 @@ void Shader::SetUniform4f(const std::string &name, float v0, float v1, float v2,
     glUniform4f(_location, v0, v1, v2, v3); //and set the varible
 }
 
+void Shader::SetUniform1i(const std::string &name, int value)
+{
+    this->Bind();
+    GetUniformLocation(name);
+    glUniform1i(_location, value); //and set the varible
+}
+
+
+
 unsigned int Shader::GetUniformLocation(const std::string &name)
 {
     if (_UniformLocationCache.find(name) != _UniformLocationCache.end())
@@ -118,7 +127,7 @@ unsigned int Shader::GetUniformLocation(const std::string &name)
     }
 
     this->_location = glGetUniformLocation(this->_RendererID, name.c_str()); //I have to no location of my Uniform
-   
+   /*
     if (_location == -1)
-        std::cout << "Warning uniform " << name << " doesn't exist" << std::endl;
+        std::cout << "Warning uniform " << name << " doesn't exist OR never used" << std::endl;*/
 }
