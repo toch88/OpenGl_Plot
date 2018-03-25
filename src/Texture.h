@@ -1,6 +1,10 @@
 #pragma once
+#include <iostream>
+#include <GL/glew.h>
+#include <GL/GL.h>
 
-#include "Renderer.h"
+
+
 
 class Texture
 {

@@ -3,6 +3,7 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <iostream>
+#include "vendor/glm/glm.hpp"
 
 
 void APIENTRY openglCallbackFunction(
@@ -29,8 +30,10 @@ public:
         static DisplayMenager instance;
         return instance;
     }
+    int height, width;
+    
     ~DisplayMenager();
-    void startup();
+    void startup(glm::vec2 wndSize);
     virtual void prepare();
     
      

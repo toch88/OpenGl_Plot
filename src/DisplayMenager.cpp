@@ -8,8 +8,10 @@ DisplayMenager::~DisplayMenager()
 {
 }
 
-void DisplayMenager::startup()
+void DisplayMenager::startup(glm::vec2 wndSize)
 {
+    this->width = wndSize.x;
+    this->height = wndSize.y;
     this->init();
     this->enableDebug();
     this->prepare();
@@ -34,7 +36,7 @@ unsigned int DisplayMenager::init()
     glfwWindowHint(GLFW_OPENGL_ANY_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
     /* Create a windowed mode window and its OpenGL context */
-    this->_window = glfwCreateWindow(800, 600, "Hello World", NULL, NULL);
+    this->_window = glfwCreateWindow(DisplayMenager::width, DisplayMenager::height, "Hello World", NULL, NULL);
     if (!this->_window)
     {
         glfwTerminate();
@@ -50,7 +52,7 @@ unsigned int DisplayMenager::init()
 
 void DisplayMenager::prepare()
 {
-    //SETUP THE BLENDING MODE r-(1-a) g-(1-a) b-(1-a) 
+    //SETUP THE BLENDING MODE r-(1-a) g-(1-a) b-(1-a)
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glEnable(GL_BLEND);
 }

@@ -4,18 +4,16 @@
 #include <array>
 
 
-  
+ static std::array<float,8> COLOR={};
 class Loader
 {
   public:
     Loader();
-    ~Loader();
-
-  public:
+     ~Loader();
     std::shared_ptr<RawModel> loadToVAO(const void *position, const void *color);
 
     template <typename _Tp, std::size_t _SIZE_POSITION, std::size_t _SIZE_COLOR>
-    std::shared_ptr<RawModel> loadToVAO(std::array<_Tp, _SIZE_POSITION> & position, std::array<_Tp, _SIZE_COLOR> & color)
+    std::shared_ptr<RawModel> loadToVAO(const std::array<_Tp, _SIZE_POSITION> & position,const std::array<_Tp, _SIZE_COLOR> & color=COLOR)
     {
         VertexArray *vao = new VertexArray();
         vao->Bind();
@@ -28,18 +26,24 @@ class Loader
         
         VertexBufferLayout layout2;
         layout2.Push<_Tp>(3);
-        vao->AddBuffer(vbo_color, layout2);
-
-     
-       
+        vao->AddBuffer(vbo_color, layout2);      
 
         std::shared_ptr<RawModel> rawModel(new RawModel());
         rawModel->addVAO(vao);
         return rawModel;
     }
 
+   
+    template <typename _Tp, std::size_t _SIZE_POSITION>
+    std::shared_ptr<RawModel> loadToVAO(const std::array<_Tp, _SIZE_POSITION> & position)
+    {
+       return this->loadToVAO<float>(position, COLOR);
+    }
+    
+
   private:
     VertexArray createVAO(const void *position, const void *color);
+     
 };
 
 template <typename V, typename... T>

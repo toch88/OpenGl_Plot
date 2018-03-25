@@ -48,7 +48,11 @@
         "map": "cpp",
         "xtree": "cpp",
         "algorithm": "cpp",
-        "xmemory": "cpp"
+        "xmemory": "cpp",
+        "cstdarg": "cpp",
+        "ctime": "cpp",
+        "functional": "cpp",
+        "iomanip": "cpp"
     },
     "C_Cpp.errorSquiggles": "Disabled"
 }

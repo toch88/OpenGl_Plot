@@ -1,4 +1,6 @@
 #include "src/DisplayMenager.h"
+#include "src/Texture.h"
+#include "src/TexturedModel.h"
 #include "src/Renderer.h"
 #include "src/Shader.h"
 #include "src/VertexBuffer.h"
@@ -8,8 +10,6 @@
 #include <memory>
 #include <experimental/array>
 #include <math.h>
-#include "src/Texture.h"
-#include "src/TexturedModel.h"
 #include "src/vendor/glm/glm.hpp"
 #include "src/vendor/glm/gtc/matrix_transform.hpp"
 
@@ -17,7 +17,7 @@ int main(void)
 {
 
     DisplayMenager& dispMngr=DisplayMenager::getInstance();
-    dispMngr.startup();
+    dispMngr.startup({800,600});
 
     auto position = array_of<float>(
         -0.01f, //v0
@@ -50,26 +50,11 @@ int main(void)
         0.5f,
         0.5f);
 
-    static const unsigned int indices[] =
-        {
-            0,
-            1,
-            2,
-            2,
-            3,
-            0,
-        };
-
-    static const float textCord[] = {
-        0.0f, 1.0f,
-        0.0f, 0.0f,
-        1.0f, 0.0f,
-        1.0f, 1.0f
-    };
-   
-    TexturedModel textureModel(glm::vec2(500,500), "filePath");
+    
 
     
+   
+    TexturedModel textureModel(glm::vec2(500,500), "filePath");
   
     Loader loader;
     std::shared_ptr<RawModel> rawModel = loader.loadToVAO<float>(position, color);
@@ -85,8 +70,7 @@ int main(void)
     
     shader.SetUniform1i("u_Texture", 0);
     Texture texture("res/point.png");
-    texture.Bind(); 
-   
+    texture.Bind();    
 
     IndexBuffer ib(indices, 6);
     ib.Bind();
