@@ -15,8 +15,8 @@ class Renderer
   public:
     void Clear();
     
-    void Draw(const TexturedModel& texturedModel) const;
-    void Draw(std::shared_ptr<RawModel> vao, const IndexBuffer &ib, const Shader &shader) const;
+    void Draw(TexturedModel& texturedModel);
+    void Draw(std::shared_ptr<RawModel> vao,  const Shader &shader) const;
    
 };
 

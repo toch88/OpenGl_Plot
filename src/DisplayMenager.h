@@ -5,7 +5,6 @@
 #include <iostream>
 #include "vendor/glm/glm.hpp"
 
-
 void APIENTRY openglCallbackFunction(
     GLenum source,
     GLenum type,
@@ -15,30 +14,30 @@ void APIENTRY openglCallbackFunction(
     const GLchar *message,
     const void *userParam);
 
-class DisplayMenager{
-private: 
-    GLFWwindow* _window;
-    unsigned int init(); 
+class DisplayMenager
+{
+  private:
+    GLFWwindow *_window;
+    unsigned int init();
     void enableDebug();
-    //Singleton so we have to disable all of public default constructor 
+    //Singleton so we have to disable all of public default constructor
     DisplayMenager();
-    DisplayMenager(DisplayMenager const&);
-    void operator=(DisplayMenager const&);    
+    DisplayMenager(DisplayMenager const &);
+    void operator=(DisplayMenager const &);
 
-public:
-    static DisplayMenager& getInstance(){
+    void LoadResource();
+
+  public:
+    static DisplayMenager &getInstance()
+    {
         static DisplayMenager instance;
         return instance;
     }
     int height, width;
-    
+
     ~DisplayMenager();
     void startup(glm::vec2 wndSize);
     virtual void prepare();
-    
-     
 
-    inline GLFWwindow* GetWindow(){return this->_window;}     
-    
-
+    inline GLFWwindow *GetWindow() { return this->_window; }
 };

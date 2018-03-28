@@ -17,12 +17,13 @@ class Shader
 {
   private:
     std::string _FilePath;
-    unsigned int _RendererID;
+    
     int _location;
     //caching for unforms
     std::unordered_map<std::string, unsigned int> _UniformLocationCache;
 
   public:
+    unsigned int _RendererID;    
     Shader(const std::string &FilePath);
     ~Shader();
 

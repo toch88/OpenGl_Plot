@@ -1,29 +1,23 @@
 #include "Renderer.h"
 
-
-void Renderer::Draw(std::shared_ptr<RawModel> rawModel, const IndexBuffer &ib, const Shader &shader) const
+void Renderer::Draw(std::shared_ptr<RawModel> rawModel, const Shader &shader) const
 {
-    
+
     rawModel->getVAO()->Bind();
-    shader.Bind();     
+    shader.Bind();
+    rawModel->getIBO()->Bind();
 
-    ib.Bind();
-
-    glDrawElements(GL_TRIANGLES, ib.GetCount(), GL_UNSIGNED_INT, nullptr);
+    glDrawElements(GL_TRIANGLES, rawModel->getIBO()->GetCount(), GL_UNSIGNED_INT, nullptr);
 }
 
-
-void Renderer::Draw(const TexturedModel& texturedModel) const
+void Renderer::Draw(TexturedModel &texturedModel) 
 {
-    texturedModel.rawModel->getVAO()->Bind();   
-    texturedModel.shader->Bind();     
+   
 
-    texturedModel.rawModel->getIBO()->Bind();
-
-    //glDrawElements(GL_TRIANGLES, ib.GetCount(), GL_UNSIGNED_INT, nullptr);
+    glDrawElements(GL_TRIANGLES, texturedModel.rawModel->getIBO()->GetCount(), GL_UNSIGNED_INT, nullptr);
 }
 
-
-void Renderer::Clear(){
-      glClear(GL_COLOR_BUFFER_BIT);
+void Renderer::Clear()
+{
+    glClear(GL_COLOR_BUFFER_BIT);
 }

@@ -16,7 +16,7 @@ public:
     void BindModel();
 
     VertexArray* getVAO(){return this->VAOs[0];}
-    IndexBuffer* getIBO(){return this->IBOs[0];}
+    IndexBuffer* getIBO() const {return this->IBOs[0];} 
     void bind();
     ~RawModel();
 };

@@ -3,18 +3,15 @@
 #include <GL/glew.h>
 #include <GL/GL.h>
 
-
-
-
 class Texture
 {
-  private:
-    unsigned int _RendererID;
+  private:    
     std::string _FilePath;
     unsigned char *_LocalBuffer;
     int _width, _height, _BPP;
 
-  public:
+  public:    
+    unsigned int _RendererID;
     Texture(const std::string &filePath);
     ~Texture();
 

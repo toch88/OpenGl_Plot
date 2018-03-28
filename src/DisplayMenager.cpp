@@ -55,6 +55,12 @@ void DisplayMenager::prepare()
     //SETUP THE BLENDING MODE r-(1-a) g-(1-a) b-(1-a)
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glEnable(GL_BLEND);
+
+    this->LoadResource();
+}
+
+void DisplayMenager::LoadResource(){
+    
 }
 
 void APIENTRY openglCallbackFunction(

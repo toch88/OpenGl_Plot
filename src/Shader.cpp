@@ -4,8 +4,7 @@ Shader::Shader(const std::string &FilePath)
     : _FilePath(FilePath), _RendererID(0)
 {
     ShaderProgramSource source = ParseShader(FilePath);
-    _RendererID = CreateShader(source.VertexSource, source.FragmentSource);
-    
+    _RendererID = CreateShader(source.VertexSource, source.FragmentSource);   
 }
 Shader::~Shader()
 {
