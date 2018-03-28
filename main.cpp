@@ -8,7 +8,7 @@
 #include <math.h>
 #include "src/vendor/glm/glm.hpp"
 #include "src/vendor/glm/gtc/matrix_transform.hpp"
-// #include "src/ResourceMenager.h"
+#include "src/ResourceMenager.h"
 
 static const float textCord[] = {
     0.0f, 1.0f,
@@ -28,7 +28,7 @@ static const unsigned int indices[] =
 
 std::array<float, 8> createVertexPosition(const glm::vec2 &P)
 {
-    float sizeOfRetancle=0.1;
+    float sizeOfRetancle = 0.1;
     float size = (sizeOfRetancle / 2);
     std::array<float, 8> array;
 
@@ -53,8 +53,12 @@ int main(void)
     DisplayMenager &dispMngr = DisplayMenager::getInstance();
     dispMngr.startup({800, 600});
 
+    ResourceMenager &rscMngr = ResourceMenager::getInstance();
+    Shader tempShader("res/shaders/Basic.vert");
+    rscMngr.Add<Shader>(tempShader);
+
     Loader loader;
-    std::array<float, 8> arrayPosition = createVertexPosition({0.0f, 0.0f});
+    std::array<float, 8> arrayPosition = createVertexPosition({-0.5f, -0.5f});
     std::shared_ptr<RawModel> rawModel = loader.loadToVAO<float>(arrayPosition);
 
     VertexBuffer *vbo_texture = new VertexBuffer(textCord, sizeof(float) * 2 * 4);
@@ -62,11 +66,10 @@ int main(void)
     VertexTextureLayout.Push<float>(2);
     rawModel->getVAO()->AddBuffer(vbo_texture, VertexTextureLayout);
 
-    Shader tempShader("res/shaders/Basic.vert");
     Texture tempTexture("res/point.png");
 
-    tempShader.Bind();
-    tempShader.SetUniform1i("u_Texture", 0);
+    rscMngr.getResource<Shader>(tempShader._RendererID).SetUniform1i("u_Texture", 0);
+    //tempShader.SetUniform1i("u_Texture", 0); //bind is inside
     tempTexture.Bind();
 
     rawModel->addIBO(new IndexBuffer(indices, 6));
@@ -78,7 +81,7 @@ int main(void)
     while (!glfwWindowShouldClose(dispMngr.GetWindow()))
     {
         renderer.Clear();
-        renderer.Draw(rawModel, tempShader);
+        renderer.Draw(rawModel);
         // renderer.Draw(textureModel2);
         // renderer.Draw(textureModel3);
         // renderer.Draw(textureModel4);

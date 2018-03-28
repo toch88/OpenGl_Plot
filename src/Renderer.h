@@ -8,6 +8,7 @@
 #include <iostream>
 #include <memory>
 #include "TexturedModel.h"
+#include "ResourceMenager.h"
 
 
 class Renderer
@@ -16,8 +17,12 @@ class Renderer
     void Clear();
     
     void Draw(TexturedModel& texturedModel);
-    void Draw(std::shared_ptr<RawModel> vao,  const Shader &shader) const;
+    void Draw(std::shared_ptr<RawModel> vao) const;
+
    
+  private:
+    ResourceMenager &_rscMngr=ResourceMenager::getInstance();  
+
 };
 
 

@@ -36,7 +36,7 @@ ${SOURCE_DIR}Loader.cpp
 ${SOURCE_DIR}vendor/stb_image/stb_image.cpp
 ${SOURCE_DIR}Texture.cpp
 #${SOURCE_DIR}TexturedModel.cpp
-#${SOURCE_DIR}ResourceMenager.cpp
+${SOURCE_DIR}ResourceMenager.cpp
 )
 
 add_executable(One_Triangle main.cpp ${SOURCE})
