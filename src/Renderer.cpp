@@ -12,7 +12,7 @@ void Renderer::Draw(std::shared_ptr<RawModel> rawModel) const
 
 void Renderer::Draw(TexturedModel &texturedModel)
 {
-
+    texturedModel.Bind();
     glDrawElements(GL_TRIANGLES, texturedModel.rawModel->getIBO()->GetCount(), GL_UNSIGNED_INT, nullptr);
 }
 

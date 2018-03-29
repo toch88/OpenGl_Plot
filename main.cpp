@@ -9,22 +9,9 @@
 #include "src/vendor/glm/glm.hpp"
 #include "src/vendor/glm/gtc/matrix_transform.hpp"
 #include "src/ResourceMenager.h"
+#include "src/TexturedModel.h"
 
-static const float textCord[] = {
-    0.0f, 1.0f,
-    0.0f, 0.0f,
-    1.0f, 0.0f,
-    1.0f, 1.0f};
 
-static const unsigned int indices[] =
-    {
-        0,
-        1,
-        2,
-        2,
-        3,
-        0,
-};
 
 std::array<float, 8> createVertexPosition(const glm::vec2 &P)
 {
@@ -53,36 +40,37 @@ int main(void)
     DisplayMenager &dispMngr = DisplayMenager::getInstance();
     dispMngr.startup({800, 600});
 
-    ResourceMenager &rscMngr = ResourceMenager::getInstance();
-    Shader tempShader("res/shaders/Basic.vert");
-    rscMngr.Add<Shader>(tempShader);
+    // ResourceMenager &rscMngr = ResourceMenager::getInstance();
+    // Shader tempShader("res/shaders/Basic.vert");
+    // rscMngr.Add<Shader>(tempShader);   
 
-    Loader loader;
-    std::array<float, 8> arrayPosition = createVertexPosition({-0.5f, -0.5f});
-    std::shared_ptr<RawModel> rawModel = loader.loadToVAO<float>(arrayPosition);
+    // Loader loader;
+    // std::array<float, 8> arrayPosition = createVertexPosition({-0.5f, -0.5f});
+    // std::shared_ptr<RawModel> rawModel = loader.loadToVAO<float>(arrayPosition);
 
-    VertexBuffer *vbo_texture = new VertexBuffer(textCord, sizeof(float) * 2 * 4);
-    VertexBufferLayout VertexTextureLayout;
-    VertexTextureLayout.Push<float>(2);
-    rawModel->getVAO()->AddBuffer(vbo_texture, VertexTextureLayout);
+    // VertexBuffer *vbo_texture = new VertexBuffer(textCord, sizeof(float) * 2 * 4);
+    // VertexBufferLayout VertexTextureLayout;
+    // VertexTextureLayout.Push<float>(2);
+    // rawModel->getVAO()->AddBuffer(vbo_texture, VertexTextureLayout);
 
-    Texture tempTexture("res/point.png");
+    //  Texture tempTexture("res/point.png");
 
-    rscMngr.getResource<Shader>(tempShader._RendererID).SetUniform1i("u_Texture", 0);
-    //tempShader.SetUniform1i("u_Texture", 0); //bind is inside
-    tempTexture.Bind();
+    // rscMngr.getResource<Shader>(tempShader._RendererID).SetUniform1i("u_Texture", 0);
+    // //tempShader.SetUniform1i("u_Texture", 0); //bind is inside
+    // tempTexture.Bind();
 
-    rawModel->addIBO(new IndexBuffer(indices, 6));
-    rawModel->getIBO()->Bind();
+    // rawModel->addIBO(new IndexBuffer(indices, 6));
+    // rawModel->getIBO()->Bind();
 
+    TexturedModel texturedModel({0.75f, 0.75f}, "res/point.png", "res/shaders/Basic.vert");
     Renderer renderer;
 
     /* Loop until the user closes the window */
     while (!glfwWindowShouldClose(dispMngr.GetWindow()))
     {
         renderer.Clear();
-        renderer.Draw(rawModel);
-        // renderer.Draw(textureModel2);
+        //renderer.Draw(rawModel);
+        renderer.Draw(texturedModel);
         // renderer.Draw(textureModel3);
         // renderer.Draw(textureModel4);
         glfwSwapBuffers(dispMngr.GetWindow());

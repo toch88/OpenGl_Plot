@@ -20,13 +20,12 @@ TexturedModel::TexturedModel(const glm::vec2 &position, const std::string &textu
     VertexTextureLayout.Push<float>(2);
     this->rawModel->getVAO()->AddBuffer(vbo_texture, VertexTextureLayout);
 
-    ResourceMenager &rscMngr = ResourceMenager::getInstance();
-    Shader tempShader(shaderFilePath);
-    Texture tempTexture(textureFilePath);
+    this->shader=std::shared_ptr<Shader>(new Shader(shaderFilePath));
+    this->texture=std::shared_ptr<Texture>(new Texture(textureFilePath));   
     
-    tempShader.Bind();
-    tempShader.SetUniform1i("u_Texture", 0);
-    tempTexture.Bind();
+    this->shader->Bind();
+    this->shader->SetUniform1i("u_Texture", 0);
+    this->texture->Bind();
 
     this->rawModel->addIBO(new IndexBuffer(indices, 6));
     this->rawModel->getIBO()->Bind();
@@ -34,6 +33,8 @@ TexturedModel::TexturedModel(const glm::vec2 &position, const std::string &textu
 
 void TexturedModel::Bind()
 {
+    this->shader->Bind();
+    this->texture->Bind();
 }
 
 std::array<float, 8> TexturedModel::createVertexPosition(const glm::vec2 &P)

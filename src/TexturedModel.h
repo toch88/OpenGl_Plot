@@ -18,4 +18,19 @@ class TexturedModel
     void Bind();
 };
 
+static const float textCord[] = {
+    0.0f, 1.0f,
+    0.0f, 0.0f,
+    1.0f, 0.0f,
+    1.0f, 1.0f};
+
+static const unsigned int indices[] =
+    {
+        0,
+        1,
+        2,
+        2,
+        3,
+        0,
+};
 
