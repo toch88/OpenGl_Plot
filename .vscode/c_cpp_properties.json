@@ -53,10 +53,10 @@
                 "${workspaceRoot}",
                 "C:/msys64/mingw64/include",
                 "C:/msys64/mingw64/include/*",
-                "${workspaceRoot}/src",                
+                "${workspaceRoot}/src",
                 "${workspaceRoot}/src/helpers",
-                "${workspaceRoot}/src/vendor/glm/",   
-                "${workspaceRoot}/src/vendor/glm/*",                 
+                "${workspaceRoot}/src/vendor/glm/",
+                "${workspaceRoot}/src/vendor/glm/*",
                 "${workspaceRoot}",
                 "C:/msys64/mingw64/include/c++/7.3.0"
             ],
@@ -78,7 +78,9 @@
                 ],
                 "limitSymbolsToIncludedHeaders": true,
                 "databaseFilename": ""
-            }
+            },
+            "cStandard": "c11",
+            "cppStandard": "c++17"
         },
         {
             "name": "MinGW",

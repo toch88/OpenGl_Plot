@@ -1,17 +1,14 @@
 #include "TexturedModel.h"
 
-TexturedModel::TexturedModel(const glm::vec2 &position, const std::string &textureFilePath, const std::string &shaderFilePath)
+TexturedModel::TexturedModel(){
+    
+}
+
+TexturedModel::TexturedModel(const glm::vec2 &position)
 {
-    std::cout << "x: " << position.x << std::endl;
-    std::cout << "y: " << position.y << std::endl;
-    std::cout << "TextureFile:" << textureFilePath << std::endl;
 
     Loader loader;
     std::array<float, 8> arrayPosition = this->createVertexPosition(position);
-    // std::cout<<std::endl;
-    // for(auto& i: arrayPosition){
-    //     std::cout<<i<<std::endl;
-    // }
 
     this->rawModel = loader.loadToVAO<float>(arrayPosition);
 
@@ -19,22 +16,22 @@ TexturedModel::TexturedModel(const glm::vec2 &position, const std::string &textu
     VertexBufferLayout VertexTextureLayout;
     VertexTextureLayout.Push<float>(2);
     this->rawModel->getVAO()->AddBuffer(vbo_texture, VertexTextureLayout);
-
-    this->shader=std::shared_ptr<Shader>(new Shader(shaderFilePath));
-    this->texture=std::shared_ptr<Texture>(new Texture(textureFilePath));   
-    
-    this->shader->Bind();
-    this->shader->SetUniform1i("u_Texture", 0);
-    this->texture->Bind();
-
     this->rawModel->addIBO(new IndexBuffer(indices, 6));
-    this->rawModel->getIBO()->Bind();
+
+    ResourceMenager &rscMngr = ResourceMenager::getInstance();
+    this->shader = rscMngr.getResource<std::shared_ptr<Shader>>("BasicShader");
+    this->texture = rscMngr.getResource<std::shared_ptr<Texture>>("point");
+    this->Bind();
+
+    this->shader->SetUniform1i("u_Texture", 0);
 }
 
 void TexturedModel::Bind()
-{
+{   
+    this->rawModel->BindModel();
     this->shader->Bind();
-    this->texture->Bind();
+    this->texture ->Bind();
+    
 }
 
 std::array<float, 8> TexturedModel::createVertexPosition(const glm::vec2 &P)

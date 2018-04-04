@@ -10,28 +10,18 @@
 #include "src/vendor/glm/gtc/matrix_transform.hpp"
 #include "src/ResourceMenager.h"
 #include "src/TexturedModel.h"
+#include <cmath>
+#include <array>
+#include <iostream>
+#include <future>
+#include "src/LineSegment.h"
 
-
-
-std::array<float, 8> createVertexPosition(const glm::vec2 &P)
+void showTime(int test)
 {
-    float sizeOfRetancle = 0.1;
-    float size = (sizeOfRetancle / 2);
-    std::array<float, 8> array;
-
-    array[0] = P.x - size; //vo
-    array[1] = P.y - size;
-
-    array[2] = P.x + size; //v1
-    array[3] = P.y - size;
-
-    array[4] = P.x + size; //v2
-    array[5] = P.y + size;
-
-    array[6] = P.x - size; //v3
-    array[7] = P.y + size;
-
-    return array;
+    while (1)
+    {
+        //std::cout << glfwGetTime() <<"Test varible: " <<test<<std::endl;
+    }
 }
 
 int main(void)
@@ -40,39 +30,22 @@ int main(void)
     DisplayMenager &dispMngr = DisplayMenager::getInstance();
     dispMngr.startup({800, 600});
 
-    // ResourceMenager &rscMngr = ResourceMenager::getInstance();
-    // Shader tempShader("res/shaders/Basic.vert");
-    // rscMngr.Add<Shader>(tempShader);   
+    dispMngr.prepare();
+    
+    LineSegment line({0.0f, 0.0f}, {-1.0, -1.0});  
 
-    // Loader loader;
-    // std::array<float, 8> arrayPosition = createVertexPosition({-0.5f, -0.5f});
-    // std::shared_ptr<RawModel> rawModel = loader.loadToVAO<float>(arrayPosition);
-
-    // VertexBuffer *vbo_texture = new VertexBuffer(textCord, sizeof(float) * 2 * 4);
-    // VertexBufferLayout VertexTextureLayout;
-    // VertexTextureLayout.Push<float>(2);
-    // rawModel->getVAO()->AddBuffer(vbo_texture, VertexTextureLayout);
-
-    //  Texture tempTexture("res/point.png");
-
-    // rscMngr.getResource<Shader>(tempShader._RendererID).SetUniform1i("u_Texture", 0);
-    // //tempShader.SetUniform1i("u_Texture", 0); //bind is inside
-    // tempTexture.Bind();
-
-    // rawModel->addIBO(new IndexBuffer(indices, 6));
-    // rawModel->getIBO()->Bind();
-
-    TexturedModel texturedModel({0.75f, 0.75f}, "res/point.png", "res/shaders/Basic.vert");
     Renderer renderer;
+    int test = 1;
+    auto fut = std::async(showTime, test);
 
     /* Loop until the user closes the window */
     while (!glfwWindowShouldClose(dispMngr.GetWindow()))
     {
+        
         renderer.Clear();
-        //renderer.Draw(rawModel);
-        renderer.Draw(texturedModel);
-        // renderer.Draw(textureModel3);
-        // renderer.Draw(textureModel4);
+        for(std::shared_ptr<TexturedModel> point: line.points){
+            renderer.Draw(point);
+        }    
         glfwSwapBuffers(dispMngr.GetWindow());
 
         /* Poll for and process events */

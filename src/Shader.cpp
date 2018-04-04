@@ -84,7 +84,7 @@ ShaderProgramSource Shader::ParseShader(const std::string &filepath)
         {
             ss[(int)type] << line << '\n';
            
-            std::cout<<line<<std::endl;
+            //std::cout<<line<<std::endl;
             
         }
     }

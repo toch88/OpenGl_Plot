@@ -4,6 +4,7 @@
 #include <GLFW/glfw3.h>
 #include <iostream>
 #include "vendor/glm/glm.hpp"
+#include "ResourceMenager.h"
 
 void APIENTRY openglCallbackFunction(
     GLenum source,

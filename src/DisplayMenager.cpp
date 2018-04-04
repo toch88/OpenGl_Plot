@@ -22,7 +22,7 @@ void DisplayMenager::enableDebug()
     // Enable the debug callback
     glEnable(GL_DEBUG_OUTPUT);
     glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);
-    glDebugMessageCallback(openglCallbackFunction, nullptr);
+    //glDebugMessageCallback(openglCallbackFunction, nullptr);
     glDebugMessageControl(GL_DONT_CARE, GL_DONT_CARE, GL_DONT_CARE, 0, NULL, true);
 }
 
@@ -45,7 +45,7 @@ unsigned int DisplayMenager::init()
 
     /* Make the window's context current */
     glfwMakeContextCurrent(this->_window);
-    glfwSwapInterval(1);
+    glfwSwapInterval(0);
     if (glewInit() != GLEW_OK)
         std::cout << "Error!" << std::endl;
 }
@@ -59,8 +59,13 @@ void DisplayMenager::prepare()
     this->LoadResource();
 }
 
-void DisplayMenager::LoadResource(){
-    
+void DisplayMenager::LoadResource()
+{
+    ResourceMenager &rscMngr = ResourceMenager::getInstance();
+    std::shared_ptr<Shader> tempShader(new Shader("res/shaders/Basic.vert"));
+    rscMngr.Add<Shader>("BasicShader", tempShader);    
+    std::shared_ptr<Texture> tempTexture(new Texture("res/point.png"));
+    rscMngr.Add<Texture>("point", tempTexture);
 }
 
 void APIENTRY openglCallbackFunction(
