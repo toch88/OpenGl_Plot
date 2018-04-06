@@ -15,6 +15,7 @@
 #include <iostream>
 #include <future>
 #include "src/LineSegment.h"
+#include <Windows.h>
 
 void showTime(int test)
 {
@@ -30,9 +31,14 @@ int main(void)
     DisplayMenager &dispMngr = DisplayMenager::getInstance();
     dispMngr.startup({800, 600});
 
-    dispMngr.prepare();
-    
-    LineSegment line({0.0f, 0.0f}, {-1.0, -1.0});  
+    // ResourceMenager &_rscMngr=ResourceMenager::getInstance();
+    // std::shared_ptr<Shader> tempShader(new Shader("res/shaders/Basic.vert"));
+    //  _rscMngr.Add<Shader>("BasicShader", tempShader);
+    // std::shared_ptr<Texture> tempTexture(new Texture("res/point.png"));
+    // _rscMngr.Add<Texture>("point", tempTexture);
+
+    // LineSegment line({0.0f, 0.0f}, {-1.0, -1.0});
+    //Grid grid(0.1);
 
     Renderer renderer;
     int test = 1;
@@ -41,18 +47,19 @@ int main(void)
     /* Loop until the user closes the window */
     while (!glfwWindowShouldClose(dispMngr.GetWindow()))
     {
-        
+
         renderer.Clear();
-        for(std::shared_ptr<TexturedModel> point: line.points){
-            renderer.Draw(point);
-        }    
+        // for(std::shared_ptr<TexturedModel> point: line.points){
+        //     renderer.Draw(point);
+        // }
+        //renderer.Draw(grid);
         glfwSwapBuffers(dispMngr.GetWindow());
 
         /* Poll for and process events */
         glfwPollEvents();
     }
 
-    //glDeleteProgram(program);
+ 
     glfwTerminate();
 
     return 0;

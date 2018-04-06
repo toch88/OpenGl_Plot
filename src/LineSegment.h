@@ -1,3 +1,4 @@
+#pragma once
 #include "TexturedModel.h"
 #include <vector>
 #include <math.h>

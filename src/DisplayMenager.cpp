@@ -6,6 +6,7 @@ DisplayMenager::DisplayMenager()
 
 DisplayMenager::~DisplayMenager()
 {
+    
 }
 
 void DisplayMenager::startup(glm::vec2 wndSize)
@@ -55,17 +56,15 @@ void DisplayMenager::prepare()
     //SETUP THE BLENDING MODE r-(1-a) g-(1-a) b-(1-a)
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glEnable(GL_BLEND);
-
     this->LoadResource();
 }
 
 void DisplayMenager::LoadResource()
-{
-    ResourceMenager &rscMngr = ResourceMenager::getInstance();
+{       
     std::shared_ptr<Shader> tempShader(new Shader("res/shaders/Basic.vert"));
-    rscMngr.Add<Shader>("BasicShader", tempShader);    
+    this->_rscMngr.Add<Shader>("BasicShader", tempShader);    
     std::shared_ptr<Texture> tempTexture(new Texture("res/point.png"));
-    rscMngr.Add<Texture>("point", tempTexture);
+    this->_rscMngr.Add<Texture>("point", tempTexture);  
 }
 
 void APIENTRY openglCallbackFunction(

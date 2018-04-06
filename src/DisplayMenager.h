@@ -21,6 +21,8 @@ class DisplayMenager
     GLFWwindow *_window;
     unsigned int init();
     void enableDebug();
+    void prepare();
+    ResourceMenager &_rscMngr=ResourceMenager::getInstance();
     //Singleton so we have to disable all of public default constructor
     DisplayMenager();
     DisplayMenager(DisplayMenager const &);
@@ -37,8 +39,8 @@ class DisplayMenager
     int height, width;
 
     ~DisplayMenager();
-    void startup(glm::vec2 wndSize);
-    virtual void prepare();
+    virtual void startup(glm::vec2 wndSize);
+   
 
     inline GLFWwindow *GetWindow() { return this->_window; }
 };

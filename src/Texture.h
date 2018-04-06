@@ -2,6 +2,7 @@
 #include <iostream>
 #include <GL/glew.h>
 #include <GL/GL.h>
+#include <memory>
 
 class Texture
 {
@@ -12,6 +13,8 @@ class Texture
 
   public:    
     unsigned int _RendererID;
+    std::shared_ptr<unsigned int> bufforTest;
+    unsigned int *_RendererID_ptr;
     Texture(const std::string &filePath);
     ~Texture();
 

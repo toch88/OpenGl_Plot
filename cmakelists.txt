@@ -41,6 +41,7 @@ ${SOURCE_DIR}Texture.cpp
 ${SOURCE_DIR}TexturedModel.cpp
 ${SOURCE_DIR}ResourceMenager.cpp
 ${SOURCE_DIR}LineSegment.cpp
+${SOURCE_DIR}Grid.cpp
 )
 
 add_executable(One_Triangle main.cpp ${SOURCE})

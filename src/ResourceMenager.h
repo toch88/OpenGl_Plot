@@ -21,10 +21,11 @@ public:
     static ResourceMenager instance;
     return instance;
   }
-  ~ResourceMenager() {}
+  ~ResourceMenager(){ 
+  }
   template <typename T>
   void Add(const std::string &name, T &resource);
-  
+
   template <typename T>
   void Add(const std::string &name, std::shared_ptr<T> resource);
 
