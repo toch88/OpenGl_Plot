@@ -1,14 +1,14 @@
-#include "DisplayMenager.h"
+#include "DisplayManager.h"
 
-DisplayMenager::DisplayMenager()
+DisplayManager::DisplayManager()
 {
 }
 
-DisplayMenager::~DisplayMenager()
+DisplayManager::~DisplayManager()
 {
 }
 
-void DisplayMenager::startup(glm::vec2 wndSize)
+void DisplayManager::startup(glm::vec2 wndSize)
 {
     this->width = wndSize.x;
     this->height = wndSize.y;
@@ -17,7 +17,7 @@ void DisplayMenager::startup(glm::vec2 wndSize)
     this->prepare();
 }
 
-void DisplayMenager::enableDebug()
+void DisplayManager::enableDebug()
 {
     // Enable the debug callback
     glEnable(GL_DEBUG_OUTPUT);
@@ -26,7 +26,7 @@ void DisplayMenager::enableDebug()
     glDebugMessageControl(GL_DONT_CARE, GL_DONT_CARE, GL_DONT_CARE, 0, NULL, true);
 }
 
-unsigned int DisplayMenager::init()
+unsigned int DisplayManager::init()
 {
     if (!glfwInit())
         return -1;
@@ -36,7 +36,7 @@ unsigned int DisplayMenager::init()
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
     /* Create a windowed mode window and its OpenGL context */
-    this->_window = glfwCreateWindow(DisplayMenager::width, DisplayMenager::height, "Hello World", NULL, NULL);
+    this->_window = glfwCreateWindow(DisplayManager::width, DisplayManager::height, "PLOT", NULL, NULL);
     if (!this->_window)
     {
         glfwTerminate();
@@ -50,22 +50,21 @@ unsigned int DisplayMenager::init()
         std::cout << "Error!" << std::endl;
 }
 
-void DisplayMenager::prepare()
+void DisplayManager::prepare()
 {
     //SETUP THE BLENDING MODE r-(1-a) g-(1-a) b-(1-a)
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glEnable(GL_BLEND);
-
     this->LoadResource();
 }
 
-void DisplayMenager::LoadResource()
+void DisplayManager::LoadResource()
 {
-    ResourceMenager &rscMngr = ResourceMenager::getInstance();
+    ResourceManager &_rscMngr = ResourceManager::getInstance();
     std::shared_ptr<Shader> tempShader(new Shader("res/shaders/Basic.vert"));
-    rscMngr.Add<Shader>("BasicShader", tempShader);    
+    _rscMngr.Add<Shader>("BasicShader", tempShader);
     std::shared_ptr<Texture> tempTexture(new Texture("res/point.png"));
-    rscMngr.Add<Texture>("point", tempTexture);
+    _rscMngr.Add<Texture>("point", tempTexture);
 }
 
 void APIENTRY openglCallbackFunction(

@@ -8,6 +8,7 @@ Texture::Texture(const std::string &path)
     this->_LocalBuffer = stbi_load(path.c_str(), &(this->_width), &(this->_height), &(this->_BPP), 4);
 
     glGenTextures(1, &(this->_RendererID));
+    this->_RendererID_ptr=&(this->_RendererID);
     
     glBindTexture(GL_TEXTURE_2D, this->_RendererID);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, this->_width, this->_height, 0, GL_RGBA, GL_UNSIGNED_BYTE, this->_LocalBuffer);
@@ -23,12 +24,7 @@ Texture::Texture(const std::string &path)
 
     if (this->_LocalBuffer)
         free(this->_LocalBuffer);
-}
-
-Texture::~Texture()
-{
-    glDeleteTextures(1, &(this->_RendererID));
-}
+} 
 
 void Texture::Bind(unsigned int slot) const
 {

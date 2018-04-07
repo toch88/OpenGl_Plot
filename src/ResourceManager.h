@@ -4,27 +4,30 @@
 #include "Texture.h"
 #include "Shader.h"
 
-class ResourceMenager
+class ResourceManager
 {
 
 private:
   std::unordered_map<std::string, std::shared_ptr<Shader>> Shaders;
   std::unordered_map<std::string, std::shared_ptr<Texture>> Textures;
 
-  ResourceMenager() {}
-  ResourceMenager(ResourceMenager const &) {}
-  void operator=(ResourceMenager const &) {}
+  ResourceManager() {}
+  ResourceManager(ResourceManager const &) {}
+  void operator=(ResourceManager const &) {}
 
 public:
-  static ResourceMenager &getInstance()
+  static ResourceManager &getInstance()
   {
-    static ResourceMenager instance;
+    static ResourceManager instance;
     return instance;
   }
-  ~ResourceMenager() {}
+  ~ResourceManager(){ 
+    this->Shaders.clear();
+    this->Textures.clear();
+  }
   template <typename T>
   void Add(const std::string &name, T &resource);
-  
+
   template <typename T>
   void Add(const std::string &name, std::shared_ptr<T> resource);
 

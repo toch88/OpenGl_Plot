@@ -19,11 +19,6 @@ add_definitions(-DGNinja)
 add_definitions(-DGLEW_STATIC)
 add_definitions(-D_WIN32=1)
 add_definitions(-Dfpermissive)
-add_definitions(-Dj8)
-
-
-
-
 
 set(SOURCE_DIR src/)
 set(SOURCE 
@@ -33,14 +28,15 @@ ${SOURCE_DIR}VertexArray.cpp
 ${SOURCE_DIR}VertexBufferLayout.cpp
 ${SOURCE_DIR}Shader.cpp
 ${SOURCE_DIR}Renderer.cpp
-${SOURCE_DIR}DisplayMenager.cpp
+${SOURCE_DIR}DisplayManager.cpp
 ${SOURCE_DIR}RawModel.cpp
 ${SOURCE_DIR}Loader.cpp
 ${SOURCE_DIR}vendor/stb_image/stb_image.cpp
 ${SOURCE_DIR}Texture.cpp
 ${SOURCE_DIR}TexturedModel.cpp
-${SOURCE_DIR}ResourceMenager.cpp
+${SOURCE_DIR}ResourceManager.cpp
 ${SOURCE_DIR}LineSegment.cpp
+${SOURCE_DIR}Grid.cpp
 )
 
 add_executable(One_Triangle main.cpp ${SOURCE})

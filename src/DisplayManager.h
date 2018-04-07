@@ -4,7 +4,7 @@
 #include <GLFW/glfw3.h>
 #include <iostream>
 #include "vendor/glm/glm.hpp"
-#include "ResourceMenager.h"
+#include "ResourceManager.h"
 
 void APIENTRY openglCallbackFunction(
     GLenum source,
@@ -15,30 +15,31 @@ void APIENTRY openglCallbackFunction(
     const GLchar *message,
     const void *userParam);
 
-class DisplayMenager
+class DisplayManager
 {
   private:
     GLFWwindow *_window;
     unsigned int init();
     void enableDebug();
+    void prepare();    
     //Singleton so we have to disable all of public default constructor
-    DisplayMenager();
-    DisplayMenager(DisplayMenager const &);
-    void operator=(DisplayMenager const &);
+    DisplayManager();
+    DisplayManager(DisplayManager const &);
+    void operator=(DisplayManager const &);
 
     void LoadResource();
 
   public:
-    static DisplayMenager &getInstance()
+    static DisplayManager &getInstance()
     {
-        static DisplayMenager instance;
+        static DisplayManager instance;
         return instance;
     }
     int height, width;
 
-    ~DisplayMenager();
-    void startup(glm::vec2 wndSize);
-    virtual void prepare();
+    ~DisplayManager();
+    virtual void startup(glm::vec2 wndSize);
+   
 
     inline GLFWwindow *GetWindow() { return this->_window; }
 };
