@@ -8,7 +8,7 @@
 #include <iostream>
 #include <memory>
 #include "TexturedModel.h"
-#include "ResourceMenager.h"
+#include "ResourceManager.h"
 #include "Grid.h"
 
 
@@ -24,7 +24,7 @@ class Renderer
 
    
   private:
-    ResourceMenager &_rscMngr=ResourceMenager::getInstance();  
+    ResourceManager &_rscMngr=ResourceManager::getInstance();  
 
 };
 

@@ -24,12 +24,7 @@ Texture::Texture(const std::string &path)
 
     if (this->_LocalBuffer)
         free(this->_LocalBuffer);
-}
- 
-Texture::~Texture()
-{
-    glDeleteTextures(1, &(this->_RendererID));
-}
+} 
 
 void Texture::Bind(unsigned int slot) const
 {

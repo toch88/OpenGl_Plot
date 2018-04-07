@@ -1,5 +1,5 @@
 #pragma once
-#include "DisplayMenager.h"
+#include "DisplayManager.h"
 #include "LineSegment.h"
 #include <vector>
 #include <memory>

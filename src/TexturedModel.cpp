@@ -18,7 +18,7 @@ TexturedModel::TexturedModel(const glm::vec2 &position)
     this->rawModel->getVAO()->AddBuffer(vbo_texture, VertexTextureLayout);
     this->rawModel->addIBO(new IndexBuffer(indices, 6));
 
-    ResourceMenager &rscMngr = ResourceMenager::getInstance();
+    ResourceManager &rscMngr = ResourceManager::getInstance();
     this->shader = rscMngr.getResource<std::shared_ptr<Shader>>("BasicShader");
     this->texture = rscMngr.getResource<std::shared_ptr<Texture>>("point");
     this->Bind();

@@ -1,5 +1,5 @@
 #pragma once
-#include "ResourceMenager.h"
+#include "ResourceManager.h"
 #include "RawModel.h"
 #include "vendor/glm/glm.hpp"
 #include <iostream>
