@@ -22,6 +22,8 @@ public:
     return instance;
   }
   ~ResourceMenager(){ 
+    this->Shaders.clear();
+    this->Textures.clear();
   }
   template <typename T>
   void Add(const std::string &name, T &resource);

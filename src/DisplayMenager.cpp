@@ -6,7 +6,7 @@ DisplayMenager::DisplayMenager()
 
 DisplayMenager::~DisplayMenager()
 {
-    
+    this->_rscMngr.~ResourceMenager();
 }
 
 void DisplayMenager::startup(glm::vec2 wndSize)

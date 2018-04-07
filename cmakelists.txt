@@ -19,11 +19,6 @@ add_definitions(-DGNinja)
 add_definitions(-DGLEW_STATIC)
 add_definitions(-D_WIN32=1)
 add_definitions(-Dfpermissive)
-add_definitions(-Dj8)
-
-
-
-
 
 set(SOURCE_DIR src/)
 set(SOURCE 
