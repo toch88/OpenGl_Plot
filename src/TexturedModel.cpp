@@ -1,8 +1,8 @@
 #include "TexturedModel.h"
 
-TexturedModel::TexturedModel(){
+// TexturedModel::TexturedModel(){
     
-}
+// }
 
 TexturedModel::TexturedModel(const glm::vec2 &position)
 {
@@ -24,6 +24,10 @@ TexturedModel::TexturedModel(const glm::vec2 &position)
     this->Bind();
 
     this->shader->SetUniform1i("u_Texture", 0);
+}
+
+void TexturedModel::updatePosition(glm::vec2& pos){
+    
 }
 
 void TexturedModel::Bind()

@@ -40,6 +40,25 @@ void LineSegment::prepareFactors()
     this->factor.y = sin(angle) / density;
 }
 
+void LineSegment::Update()
+{
+    this->points.clear();
+    this->preparePoints();
+}
+
+void LineSegment::SetAngle(double angle)
+{
+    this->angleInDeg = angle;
+    this->angle = this->angleInDeg * PI / 360;
+    this->prepareFactors();
+}
+
+void LineSegment::updatePoints(){
+    for(std::shared_ptr<TexturedModel>& point:this->points){
+       
+    }
+}
+
 bool LineSegment::preparePoints()
 {
     if (!(this->lenght == 0))

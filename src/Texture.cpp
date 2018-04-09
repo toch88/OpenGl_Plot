@@ -7,10 +7,10 @@ Texture::Texture(const std::string &path)
     stbi_set_flip_vertically_on_load(1);
     this->_LocalBuffer = stbi_load(path.c_str(), &(this->_width), &(this->_height), &(this->_BPP), 4);
 
-    glGenTextures(1, &(this->_RendererID));
-    this->_RendererID_ptr=&(this->_RendererID);
+    glGenTextures(1, &(this->texture._RendererID));
+   
     
-    glBindTexture(GL_TEXTURE_2D, this->_RendererID);
+    glBindTexture(GL_TEXTURE_2D, this->texture._RendererID);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, this->_width, this->_height, 0, GL_RGBA, GL_UNSIGNED_BYTE, this->_LocalBuffer);
     glGenerateMipmap(GL_TEXTURE_2D);  //Generate mipmaps now!!!
    
@@ -29,7 +29,7 @@ Texture::Texture(const std::string &path)
 void Texture::Bind(unsigned int slot) const
 {
     glActiveTexture(GL_TEXTURE0 + slot);
-    glBindTexture(GL_TEXTURE_2D, this->_RendererID);
+    glBindTexture(GL_TEXTURE_2D, this->texture._RendererID);
 }
 
 void Texture::Unbind() const

@@ -12,9 +12,10 @@ class TexturedModel
     std::shared_ptr<Texture> texture;
     std::shared_ptr<Shader> shader;
     float sizeOfRetancle = 0.007;
-    TexturedModel();
+    //TexturedModel();
     TexturedModel(const glm::vec2 &position);
     std::array<float, 8> createVertexPosition(const glm::vec2 &position);
+    void updatePosition(glm::vec2& pos);
     void Bind();
 };
 

@@ -11,6 +11,8 @@ class VertexBuffer
         ~VertexBuffer();
         inline toString(){std::cout<<"Vertex Buffer: "<<this->_RendererID<<std::endl;}
 
+        void Update(const void* data, unsigned int size);
+
         void Bind() const;
         void Unbind() const;
 

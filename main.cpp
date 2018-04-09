@@ -14,16 +14,9 @@
 #include <array>
 #include <iostream>
 #include <future>
-#include "src/LineSegment.h"
-#include <Windows.h>
 
-void showTime(int test)
-{
-    while (1)
-    {
-        //std::cout << glfwGetTime() <<"Test varible: " <<test<<std::endl;
-    }
-}
+double time2 = 0.016;
+double tick = 0;
 
 int main(void)
 {
@@ -31,31 +24,32 @@ int main(void)
         DisplayManager &dispMngr = DisplayManager::getInstance();
         dispMngr.startup({800, 600});
 
-       
-
-        LineSegment line({0.0f, 0.0f}, {-1.0, -1.0});
-        //Grid grid(0.1);
-
         Renderer renderer;
-        int test = 1;
-        auto fut = std::async(showTime, test);
+        LineSegment line({0.0, 0.0}, {0.5, 0.5});
 
         /* Loop until the user closes the window */
         while (!glfwWindowShouldClose(dispMngr.GetWindow()))
         {
+            tick = glfwGetTime();
+            if (tick > time2)
+            {
+                tick = 0;
+                glfwSetTime(0);
+                renderer.Clear();
+                line.SetAngle(++line.angleInDeg);
+                line.Update();
+                for (std::shared_ptr<TexturedModel> &point : line.points)
+                {
+                    renderer.Draw(point);
+                }
+                glfwSwapBuffers(dispMngr.GetWindow());
 
-            renderer.Clear();
-            for(std::shared_ptr<TexturedModel> point: line.points){
-                renderer.Draw(point);
+                /* Poll for and process events */
+                glfwPollEvents();
             }
-            // renderer.Draw(grid);
-            glfwSwapBuffers(dispMngr.GetWindow());
-
-            /* Poll for and process events */
-            glfwPollEvents();
         }
         glfwTerminate();
     }
-  
+
     return 0;
 }
