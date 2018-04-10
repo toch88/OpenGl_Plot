@@ -1,33 +1,40 @@
 #include "Renderer.h"
-#include <iostream>
 
-void APIENTRY openglCallbackFunction(
-    GLenum source,
-    GLenum type,
-    GLuint id,
-    GLenum severity,
-    GLsizei length,
-    const GLchar *message,
-    const void *userParam)
+void Renderer::Draw(std::shared_ptr<RawModel> rawModel) const
 {
-    (void)source;
-    (void)type;
-    (void)id;
-    (void)severity;
-    (void)length;
-    (void)userParam;
-    fprintf(stderr, "%s\n\n", message);
-   
+
+    rawModel->getVAO()->Bind();
+    this->_rscMngr.getResource<std::shared_ptr<Shader>>("BasicShader");
+    rawModel->getIBO()->Bind();
+
+    glDrawElements(GL_TRIANGLES, rawModel->getIBO()->GetCount(), GL_UNSIGNED_INT, nullptr);
 }
 
-void Renderer::Draw(const VertexArray &va, const IndexBuffer &ib, const Shader &shader) const
+void Renderer::Draw(TexturedModel &texturedModel)
 {
-    shader.Bind();
-    va.Bind();
-    ib.Bind();
-
-    glDrawElements(GL_TRIANGLES, ib.GetCount(), GL_UNSIGNED_INT, nullptr);
+    texturedModel.Bind();
+    glDrawElements(GL_TRIANGLES, texturedModel.rawModel->getIBO()->GetCount(), GL_UNSIGNED_INT, nullptr);
 }
-void Renderer::Clear(){
-      glClear(GL_COLOR_BUFFER_BIT);
+
+void Renderer::Draw(std::shared_ptr<TexturedModel> texturedModel)
+{
+
+    texturedModel->Bind();
+    glDrawElements(GL_TRIANGLES, texturedModel->rawModel->getIBO()->GetCount(), GL_UNSIGNED_INT, nullptr);
+}
+
+void Renderer::Draw(Grid &grid)
+{
+    for (std::shared_ptr<LineSegment> line : grid.verticalLines)
+    {
+        for (std::shared_ptr<TexturedModel> point : line->points)
+        {
+            this->Draw(point);
+        }
+    }    
+}
+
+void Renderer::Clear()
+{
+    glClear(GL_COLOR_BUFFER_BIT);
 }

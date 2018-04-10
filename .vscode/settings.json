@@ -37,6 +37,31 @@
         "string_view": "cpp",
         "string": "cpp",
         "array": "cpp",
-        "tuple": "cpp"
-    }
+        "tuple": "cpp",
+        "*.tcc": "cpp",
+        "cctype": "cpp",
+        "clocale": "cpp",
+        "cwctype": "cpp",
+        "fstream": "cpp",
+        "memory": "cpp",
+        "optional": "cpp",
+        "map": "cpp",
+        "xtree": "cpp",
+        "algorithm": "cpp",
+        "xmemory": "cpp",
+        "cstdarg": "cpp",
+        "ctime": "cpp",
+        "functional": "cpp",
+        "iomanip": "cpp",
+        "unordered_map": "cpp",
+        "atomic": "cpp",
+        "chrono": "cpp",
+        "condition_variable": "cpp",
+        "future": "cpp",
+        "mutex": "cpp",
+        "ratio": "cpp",
+        "thread": "cpp"
+    },
+    "C_Cpp.errorSquiggles": "Disabled",
+    "C_Cpp.dimInactiveRegions": false
 }

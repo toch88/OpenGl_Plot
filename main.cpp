@@ -1,122 +1,64 @@
-#include <GL/glew.h>
-#include <GLFW/glfw3.h>
+
+#include "src/DisplayManager.h"
 #include "src/Renderer.h"
-#include "src/VertexBuffer.h"
+#include "src/Loader.h"
+#include "src/Test.h"
+#include <memory>
+#include <experimental/array>
+#include <math.h>
+#include "src/vendor/glm/glm.hpp"
+#include "src/vendor/glm/gtc/matrix_transform.hpp"
+#include "src/ResourceManager.h"
+#include "src/TexturedModel.h"
+#include <cmath>
+#include <array>
+#include <iostream>
+
+double prev_tick = 0;
+double tick = 0;
+double deltaTime = 0;
+double posX = 0;
+double posY = 0;
 
 int main(void)
 {
 
-    GLFWwindow *window;
-
-    /* Initialize the library */
-    if (!glfwInit())
-        return -1;
-
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-    glfwWindowHint(GLFW_OPENGL_ANY_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-
-    /* Create a windowed mode window and its OpenGL context */
-    window = glfwCreateWindow(800, 600, "Hello World", NULL, NULL);
-    if (!window)
     {
-        glfwTerminate();
-        return -1;
-    }
-
-    /* Make the window's context current */
-    glfwMakeContextCurrent(window);
-    glfwSwapInterval(1);
-    if (glewInit() != GLEW_OK)
-        std::cout << "Error!" << std::endl;
-
-    // Enable the debug callback
-    glEnable(GL_DEBUG_OUTPUT);
-    glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);
-    glDebugMessageCallback(openglCallbackFunction, nullptr);
-    glDebugMessageControl(GL_DONT_CARE, GL_DONT_CARE, GL_DONT_CARE, 0, NULL, true);
-    {
-        static const float position[] = {
-            -0.5f, //v0
-            0.5f, 1,
-
-            -0.5f, //v1
-            -0.5f, 0.5,
-
-            0.5f, //v2
-            -0.5f, 0};
-
-        static const float position2[] = {
-            0.5f, //v0
-            0.5f, 0.5,
-
-            -0.5f, //v1
-            0.5f, 1,
-
-            0.5f, //v2
-            -0.5f, 0};
-
-        static const unsigned int indices[] =
-            {
-                0,
-                1,
-                2,
-            };
-        unsigned int vao, vbo;
-        glGenVertexArrays(1, &vao);
-        glBindVertexArray(vao);
-
-        glGenBuffers(1, &vbo);
-        glBindBuffer(GL_ARRAY_BUFFER, vbo);
-        glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 3 * 3, position, GL_STATIC_DRAW_ARB);
-
-        glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), reinterpret_cast<void *>(0));
-        glVertexAttribPointer(1, 1, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), reinterpret_cast<void *>(sizeof(GLfloat)*2));
-        glEnableVertexAttribArray(0);
-        glEnableVertexAttribArray(1);
-        
-        glBindVertexArray(0);
-
-        unsigned int vao2, vbo2;
-        glGenVertexArrays(1, &vao2);
-        glBindVertexArray(vao2);
-
-        glGenBuffers(1, &vbo2);
-        glBindBuffer(GL_ARRAY_BUFFER, vbo2);
-        glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 3 * 3, position2, GL_STATIC_DRAW_ARB);
-
-        glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), reinterpret_cast<void *>(0));
-        glVertexAttribPointer(1, 1, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), reinterpret_cast<void *>(sizeof(GLfloat)*2));
-        glEnableVertexAttribArray(0);
-        glEnableVertexAttribArray(1);
-        
-        glBindVertexArray(0);
-
-        Shader shader("res/shaders/Basic.vert");
-        shader.Bind();
+        DisplayManager &dispMngr = DisplayManager::getInstance();
+        dispMngr.startup({800, 600});
+        Renderer renderer;
+        // TexturedModel point({0.5f, 0.5f});
+        // TexturedModel point2({0.5f, 0.5f});
+        // std::cout << point.rawModel->getVAO()->getVBO("position")->name << std::endl;
+        LineSegment line({0.0, 0.0}, {0.5, 0.5});
 
         /* Loop until the user closes the window */
-        while (!glfwWindowShouldClose(window))
+        while (!glfwWindowShouldClose(dispMngr.GetWindow()))
         {
-            glBindVertexArray(vao);
 
-            glDrawArrays(GL_TRIANGLES, 0, 3);
+            renderer.Clear();
+            // point.rawModel->getVAO()->getVBO("position")->Update(point.createVertexPosition({posX += 0.001, 0})._M_elems);
+            // point2.rawModel->getVAO()->getVBO("position")->Update(point2.createVertexPosition({0, posY += 0.001})._M_elems);
+            // renderer.Draw(point);
+            // renderer.Draw(point2);
 
-            glBindVertexArray(0);
+            line.SetAngle(line.angleInDeg+=0.1);
+            if (line.angleInDeg == 360)
+            {
+                line.angleInDeg = 0;
+            }
+            line.Update();
+            for (std::shared_ptr<TexturedModel> &point : line.points)
+            {
+                renderer.Draw(point);
+            }
 
-             glBindVertexArray(vao2);
-
-            glDrawArrays(GL_TRIANGLES, 0, 3);
-
-            glBindVertexArray(0);
-            /* Swap front and back buffers */
-            glfwSwapBuffers(window);
-
+            glfwSwapBuffers(dispMngr.GetWindow());
             /* Poll for and process events */
             glfwPollEvents();
         }
+        glfwTerminate();
     }
-    //glDeleteProgram(program);
-    glfwTerminate();
+
     return 0;
 }

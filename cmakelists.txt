@@ -2,18 +2,24 @@ cmake_minimum_required(VERSION 3.0.0)
 project(One_Triangle VERSION 0.0.0)
 
 include(CTest)
-enable_testing()
 
 include_directories(C:/msys64/mingw64/include)
 include_directories(/src)
+include_directories(/src/vendor/stb_image)
+include_directories(/src/vendor/glm)
+
+
 
 
 find_library(OPENGL libopengl32.a C:/msys64/usr/lib/w32api)
 find_library(GLFW3 libglfw3.a C:/msys64/mingw64/lib)
 find_library(GLEW glew32 C:/msys64/mingw64/lib)
 
+add_definitions(-DGNinja)
 add_definitions(-DGLEW_STATIC)
 add_definitions(-D_WIN32=1)
+add_definitions(-Dfpermissive)
+
 set(SOURCE_DIR src/)
 set(SOURCE 
 ${SOURCE_DIR}VertexBuffer.cpp
@@ -22,12 +28,22 @@ ${SOURCE_DIR}VertexArray.cpp
 ${SOURCE_DIR}VertexBufferLayout.cpp
 ${SOURCE_DIR}Shader.cpp
 ${SOURCE_DIR}Renderer.cpp
+${SOURCE_DIR}DisplayManager.cpp
+${SOURCE_DIR}RawModel.cpp
+${SOURCE_DIR}Loader.cpp
+${SOURCE_DIR}vendor/stb_image/stb_image.cpp
+${SOURCE_DIR}Texture.cpp
+${SOURCE_DIR}TexturedModel.cpp
+${SOURCE_DIR}ResourceManager.cpp
+${SOURCE_DIR}LineSegment.cpp
+${SOURCE_DIR}Grid.cpp
+${SOURCE_DIR}TextureWrapper.cpp
 )
 
 add_executable(One_Triangle main.cpp ${SOURCE})
-message("======${OPENGL} =========== /n")
-message("------${GLFW3} ------------ /n")
-message("------${GLEW} ------------ /n")
+message("======${OPENGL} ===========")
+message("------${GLFW3} ------------")
+message("------${GLEW} -------------")
 target_link_libraries(One_Triangle ${OPENGL} ${GLFW3} ${GLEW})
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})

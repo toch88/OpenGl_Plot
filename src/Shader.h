@@ -17,12 +17,13 @@ class Shader
 {
   private:
     std::string _FilePath;
-    unsigned int _RendererID;
+    
     int _location;
     //caching for unforms
     std::unordered_map<std::string, unsigned int> _UniformLocationCache;
 
   public:
+    unsigned int _RendererID;    
     Shader(const std::string &FilePath);
     ~Shader();
 
@@ -31,6 +32,7 @@ class Shader
 
 
     //Set Uniforms
+    void SetUniform1i(const std::string &name, int value);
     void SetUniform4f(const std::string &name, float v0, float v1, float f2, float f3);
 
   private:
