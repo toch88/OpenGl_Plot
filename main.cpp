@@ -30,8 +30,7 @@ int main(void)
         // TexturedModel point({0.5f, 0.5f});
         // TexturedModel point2({0.5f, 0.5f});
         // std::cout << point.rawModel->getVAO()->getVBO("position")->name << std::endl;
-         LineSegment line({0.0, 0.0}, {0.5, 0.5});
-        
+        LineSegment line({0.0, 0.0}, {0.5, 0.5});
 
         /* Loop until the user closes the window */
         while (!glfwWindowShouldClose(dispMngr.GetWindow()))
@@ -41,12 +40,12 @@ int main(void)
             // point.rawModel->getVAO()->getVBO("position")->Update(point.createVertexPosition({posX += 0.001, 0})._M_elems);
             // point2.rawModel->getVAO()->getVBO("position")->Update(point2.createVertexPosition({0, posY += 0.001})._M_elems);
             // renderer.Draw(point);
-            // renderer.Draw(point2);          
+            // renderer.Draw(point2);
 
-
-            line.SetAngle(++line.angleInDeg);
-            if(line.angleInDeg==360){
-                line.angleInDeg=0;
+            line.SetAngle(line.angleInDeg+=0.1);
+            if (line.angleInDeg == 360)
+            {
+                line.angleInDeg = 0;
             }
             line.Update();
             for (std::shared_ptr<TexturedModel> &point : line.points)
