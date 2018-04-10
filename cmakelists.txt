@@ -41,9 +41,9 @@ ${SOURCE_DIR}TextureWrapper.cpp
 )
 
 add_executable(One_Triangle main.cpp ${SOURCE})
-message("======${OPENGL} =========== /n")
-message("------${GLFW3} ------------ /n")
-message("------${GLEW} ------------ /n")
+message("======${OPENGL} ===========")
+message("------${GLFW3} ------------")
+message("------${GLEW} -------------")
 target_link_libraries(One_Triangle ${OPENGL} ${GLFW3} ${GLEW})
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})

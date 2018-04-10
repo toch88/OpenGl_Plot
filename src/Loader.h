@@ -22,12 +22,13 @@ class Loader
     {
         VertexArray *vao = new VertexArray();
         vao->Bind();
-        VertexBuffer *vbo = new VertexBuffer(position._M_elems, sizeof(_Tp) * position.size());
+        
+        std::shared_ptr<VertexBuffer> vbo(new VertexBuffer(position._M_elems, sizeof(_Tp) * position.size(), "position"));
         VertexBufferLayout layout;
         layout.Push<_Tp>(2);
         vao->AddBuffer(vbo, layout);
 
-        VertexBuffer *vbo_color = new VertexBuffer(color._M_elems, sizeof(_Tp) * color.size());
+        std::shared_ptr<VertexBuffer> vbo_color(new VertexBuffer(color._M_elems, sizeof(_Tp) * color.size(), "color"));
 
         VertexBufferLayout layout2;
         layout2.Push<_Tp>(3);

@@ -25,22 +25,6 @@
                   {
                     "isGenerated": true,
                     "sources": [
-                      "build/CMakeFiles/ExperimentalBuild",
-                      "build/CMakeFiles/ExperimentalBuild.rule"
-                    ]
-                  }
-                ],
-                "fullName": "ExperimentalBuild",
-                "name": "ExperimentalBuild",
-                "sourceDirectory": "C:/Users/toch/Desktop/OpenGL/exercises",
-                "type": "UTILITY"
-              },
-              {
-                "buildDirectory": "C:/Users/toch/Desktop/OpenGL/exercises/build",
-                "fileGroups": [
-                  {
-                    "isGenerated": true,
-                    "sources": [
                       "build/CMakeFiles/Experimental",
                       "build/CMakeFiles/Experimental.rule"
                     ]
@@ -48,102 +32,6 @@
                 ],
                 "fullName": "Experimental",
                 "name": "Experimental",
-                "sourceDirectory": "C:/Users/toch/Desktop/OpenGL/exercises",
-                "type": "UTILITY"
-              },
-              {
-                "buildDirectory": "C:/Users/toch/Desktop/OpenGL/exercises/build",
-                "fileGroups": [
-                  {
-                    "isGenerated": true,
-                    "sources": [
-                      "build/CMakeFiles/ContinuousMemCheck",
-                      "build/CMakeFiles/ContinuousMemCheck.rule"
-                    ]
-                  }
-                ],
-                "fullName": "ContinuousMemCheck",
-                "name": "ContinuousMemCheck",
-                "sourceDirectory": "C:/Users/toch/Desktop/OpenGL/exercises",
-                "type": "UTILITY"
-              },
-              {
-                "buildDirectory": "C:/Users/toch/Desktop/OpenGL/exercises/build",
-                "fileGroups": [
-                  {
-                    "isGenerated": true,
-                    "sources": [
-                      "build/CMakeFiles/Nightly",
-                      "build/CMakeFiles/Nightly.rule"
-                    ]
-                  }
-                ],
-                "fullName": "Nightly",
-                "name": "Nightly",
-                "sourceDirectory": "C:/Users/toch/Desktop/OpenGL/exercises",
-                "type": "UTILITY"
-              },
-              {
-                "buildDirectory": "C:/Users/toch/Desktop/OpenGL/exercises/build",
-                "fileGroups": [
-                  {
-                    "isGenerated": true,
-                    "sources": [
-                      "build/CMakeFiles/NightlyBuild",
-                      "build/CMakeFiles/NightlyBuild.rule"
-                    ]
-                  }
-                ],
-                "fullName": "NightlyBuild",
-                "name": "NightlyBuild",
-                "sourceDirectory": "C:/Users/toch/Desktop/OpenGL/exercises",
-                "type": "UTILITY"
-              },
-              {
-                "buildDirectory": "C:/Users/toch/Desktop/OpenGL/exercises/build",
-                "fileGroups": [
-                  {
-                    "isGenerated": true,
-                    "sources": [
-                      "build/CMakeFiles/NightlyStart",
-                      "build/CMakeFiles/NightlyStart.rule"
-                    ]
-                  }
-                ],
-                "fullName": "NightlyStart",
-                "name": "NightlyStart",
-                "sourceDirectory": "C:/Users/toch/Desktop/OpenGL/exercises",
-                "type": "UTILITY"
-              },
-              {
-                "buildDirectory": "C:/Users/toch/Desktop/OpenGL/exercises/build",
-                "fileGroups": [
-                  {
-                    "isGenerated": true,
-                    "sources": [
-                      "build/CMakeFiles/NightlyConfigure",
-                      "build/CMakeFiles/NightlyConfigure.rule"
-                    ]
-                  }
-                ],
-                "fullName": "NightlyConfigure",
-                "name": "NightlyConfigure",
-                "sourceDirectory": "C:/Users/toch/Desktop/OpenGL/exercises",
-                "type": "UTILITY"
-              },
-              {
-                "buildDirectory": "C:/Users/toch/Desktop/OpenGL/exercises/build",
-                "fileGroups": [
-                  {
-                    "isGenerated": true,
-                    "sources": [
-                      "build/CMakeFiles/NightlyTest",
-                      "build/CMakeFiles/NightlyTest.rule"
-                    ]
-                  }
-                ],
-                "fullName": "NightlyTest",
-                "name": "NightlyTest",
                 "sourceDirectory": "C:/Users/toch/Desktop/OpenGL/exercises",
                 "type": "UTILITY"
               },
@@ -169,13 +57,13 @@
                   {
                     "isGenerated": true,
                     "sources": [
-                      "build/CMakeFiles/NightlyUpdate",
-                      "build/CMakeFiles/NightlyUpdate.rule"
+                      "build/CMakeFiles/ContinuousMemCheck",
+                      "build/CMakeFiles/ContinuousMemCheck.rule"
                     ]
                   }
                 ],
-                "fullName": "NightlyUpdate",
-                "name": "NightlyUpdate",
+                "fullName": "ContinuousMemCheck",
+                "name": "ContinuousMemCheck",
                 "sourceDirectory": "C:/Users/toch/Desktop/OpenGL/exercises",
                 "type": "UTILITY"
               },
@@ -185,13 +73,13 @@
                   {
                     "isGenerated": true,
                     "sources": [
-                      "build/CMakeFiles/NightlyMemoryCheck",
-                      "build/CMakeFiles/NightlyMemoryCheck.rule"
+                      "build/CMakeFiles/Continuous",
+                      "build/CMakeFiles/Continuous.rule"
                     ]
                   }
                 ],
-                "fullName": "NightlyMemoryCheck",
-                "name": "NightlyMemoryCheck",
+                "fullName": "Continuous",
+                "name": "Continuous",
                 "sourceDirectory": "C:/Users/toch/Desktop/OpenGL/exercises",
                 "type": "UTILITY"
               },
@@ -201,13 +89,77 @@
                   {
                     "isGenerated": true,
                     "sources": [
-                      "build/CMakeFiles/NightlySubmit",
-                      "build/CMakeFiles/NightlySubmit.rule"
+                      "build/CMakeFiles/Nightly",
+                      "build/CMakeFiles/Nightly.rule"
                     ]
                   }
                 ],
-                "fullName": "NightlySubmit",
-                "name": "NightlySubmit",
+                "fullName": "Nightly",
+                "name": "Nightly",
+                "sourceDirectory": "C:/Users/toch/Desktop/OpenGL/exercises",
+                "type": "UTILITY"
+              },
+              {
+                "buildDirectory": "C:/Users/toch/Desktop/OpenGL/exercises/build",
+                "fileGroups": [
+                  {
+                    "isGenerated": true,
+                    "sources": [
+                      "build/CMakeFiles/ExperimentalBuild",
+                      "build/CMakeFiles/ExperimentalBuild.rule"
+                    ]
+                  }
+                ],
+                "fullName": "ExperimentalBuild",
+                "name": "ExperimentalBuild",
+                "sourceDirectory": "C:/Users/toch/Desktop/OpenGL/exercises",
+                "type": "UTILITY"
+              },
+              {
+                "buildDirectory": "C:/Users/toch/Desktop/OpenGL/exercises/build",
+                "fileGroups": [
+                  {
+                    "isGenerated": true,
+                    "sources": [
+                      "build/CMakeFiles/NightlyStart",
+                      "build/CMakeFiles/NightlyStart.rule"
+                    ]
+                  }
+                ],
+                "fullName": "NightlyStart",
+                "name": "NightlyStart",
+                "sourceDirectory": "C:/Users/toch/Desktop/OpenGL/exercises",
+                "type": "UTILITY"
+              },
+              {
+                "buildDirectory": "C:/Users/toch/Desktop/OpenGL/exercises/build",
+                "fileGroups": [
+                  {
+                    "isGenerated": true,
+                    "sources": [
+                      "build/CMakeFiles/NightlyBuild",
+                      "build/CMakeFiles/NightlyBuild.rule"
+                    ]
+                  }
+                ],
+                "fullName": "NightlyBuild",
+                "name": "NightlyBuild",
+                "sourceDirectory": "C:/Users/toch/Desktop/OpenGL/exercises",
+                "type": "UTILITY"
+              },
+              {
+                "buildDirectory": "C:/Users/toch/Desktop/OpenGL/exercises/build",
+                "fileGroups": [
+                  {
+                    "isGenerated": true,
+                    "sources": [
+                      "build/CMakeFiles/NightlyConfigure",
+                      "build/CMakeFiles/NightlyConfigure.rule"
+                    ]
+                  }
+                ],
+                "fullName": "NightlyConfigure",
+                "name": "NightlyConfigure",
                 "sourceDirectory": "C:/Users/toch/Desktop/OpenGL/exercises",
                 "type": "UTILITY"
               },
@@ -249,13 +201,61 @@
                   {
                     "isGenerated": true,
                     "sources": [
-                      "build/CMakeFiles/Continuous",
-                      "build/CMakeFiles/Continuous.rule"
+                      "build/CMakeFiles/NightlyMemoryCheck",
+                      "build/CMakeFiles/NightlyMemoryCheck.rule"
                     ]
                   }
                 ],
-                "fullName": "Continuous",
-                "name": "Continuous",
+                "fullName": "NightlyMemoryCheck",
+                "name": "NightlyMemoryCheck",
+                "sourceDirectory": "C:/Users/toch/Desktop/OpenGL/exercises",
+                "type": "UTILITY"
+              },
+              {
+                "buildDirectory": "C:/Users/toch/Desktop/OpenGL/exercises/build",
+                "fileGroups": [
+                  {
+                    "isGenerated": true,
+                    "sources": [
+                      "build/CMakeFiles/NightlySubmit",
+                      "build/CMakeFiles/NightlySubmit.rule"
+                    ]
+                  }
+                ],
+                "fullName": "NightlySubmit",
+                "name": "NightlySubmit",
+                "sourceDirectory": "C:/Users/toch/Desktop/OpenGL/exercises",
+                "type": "UTILITY"
+              },
+              {
+                "buildDirectory": "C:/Users/toch/Desktop/OpenGL/exercises/build",
+                "fileGroups": [
+                  {
+                    "isGenerated": true,
+                    "sources": [
+                      "build/CMakeFiles/NightlyUpdate",
+                      "build/CMakeFiles/NightlyUpdate.rule"
+                    ]
+                  }
+                ],
+                "fullName": "NightlyUpdate",
+                "name": "NightlyUpdate",
+                "sourceDirectory": "C:/Users/toch/Desktop/OpenGL/exercises",
+                "type": "UTILITY"
+              },
+              {
+                "buildDirectory": "C:/Users/toch/Desktop/OpenGL/exercises/build",
+                "fileGroups": [
+                  {
+                    "isGenerated": true,
+                    "sources": [
+                      "build/CMakeFiles/NightlyTest",
+                      "build/CMakeFiles/NightlyTest.rule"
+                    ]
+                  }
+                ],
+                "fullName": "NightlyTest",
+                "name": "NightlyTest",
                 "sourceDirectory": "C:/Users/toch/Desktop/OpenGL/exercises",
                 "type": "UTILITY"
               },
@@ -281,13 +281,13 @@
                   {
                     "isGenerated": true,
                     "sources": [
-                      "build/CMakeFiles/ExperimentalCoverage",
-                      "build/CMakeFiles/ExperimentalCoverage.rule"
+                      "build/CMakeFiles/ContinuousConfigure",
+                      "build/CMakeFiles/ContinuousConfigure.rule"
                     ]
                   }
                 ],
-                "fullName": "ExperimentalCoverage",
-                "name": "ExperimentalCoverage",
+                "fullName": "ContinuousConfigure",
+                "name": "ContinuousConfigure",
                 "sourceDirectory": "C:/Users/toch/Desktop/OpenGL/exercises",
                 "type": "UTILITY"
               },
@@ -297,13 +297,13 @@
                   {
                     "isGenerated": true,
                     "sources": [
-                      "build/CMakeFiles/ExperimentalSubmit",
-                      "build/CMakeFiles/ExperimentalSubmit.rule"
+                      "build/CMakeFiles/ExperimentalUpdate",
+                      "build/CMakeFiles/ExperimentalUpdate.rule"
                     ]
                   }
                 ],
-                "fullName": "ExperimentalSubmit",
-                "name": "ExperimentalSubmit",
+                "fullName": "ExperimentalUpdate",
+                "name": "ExperimentalUpdate",
                 "sourceDirectory": "C:/Users/toch/Desktop/OpenGL/exercises",
                 "type": "UTILITY"
               },
@@ -313,29 +313,13 @@
                   {
                     "isGenerated": true,
                     "sources": [
-                      "build/CMakeFiles/ExperimentalConfigure",
-                      "build/CMakeFiles/ExperimentalConfigure.rule"
+                      "build/CMakeFiles/ExperimentalTest",
+                      "build/CMakeFiles/ExperimentalTest.rule"
                     ]
                   }
                 ],
-                "fullName": "ExperimentalConfigure",
-                "name": "ExperimentalConfigure",
-                "sourceDirectory": "C:/Users/toch/Desktop/OpenGL/exercises",
-                "type": "UTILITY"
-              },
-              {
-                "buildDirectory": "C:/Users/toch/Desktop/OpenGL/exercises/build",
-                "fileGroups": [
-                  {
-                    "isGenerated": true,
-                    "sources": [
-                      "build/CMakeFiles/ContinuousBuild",
-                      "build/CMakeFiles/ContinuousBuild.rule"
-                    ]
-                  }
-                ],
-                "fullName": "ContinuousBuild",
-                "name": "ContinuousBuild",
+                "fullName": "ExperimentalTest",
+                "name": "ExperimentalTest",
                 "sourceDirectory": "C:/Users/toch/Desktop/OpenGL/exercises",
                 "type": "UTILITY"
               },
@@ -352,6 +336,22 @@
                 ],
                 "fullName": "ExperimentalMemCheck",
                 "name": "ExperimentalMemCheck",
+                "sourceDirectory": "C:/Users/toch/Desktop/OpenGL/exercises",
+                "type": "UTILITY"
+              },
+              {
+                "buildDirectory": "C:/Users/toch/Desktop/OpenGL/exercises/build",
+                "fileGroups": [
+                  {
+                    "isGenerated": true,
+                    "sources": [
+                      "build/CMakeFiles/ExperimentalCoverage",
+                      "build/CMakeFiles/ExperimentalCoverage.rule"
+                    ]
+                  }
+                ],
+                "fullName": "ExperimentalCoverage",
+                "name": "ExperimentalCoverage",
                 "sourceDirectory": "C:/Users/toch/Desktop/OpenGL/exercises",
                 "type": "UTILITY"
               },
@@ -419,7 +419,8 @@
                       "src/TexturedModel.cpp",
                       "src/ResourceManager.cpp",
                       "src/LineSegment.cpp",
-                      "src/Grid.cpp"
+                      "src/Grid.cpp",
+                      "src/TextureWrapper.cpp"
                     ]
                   }
                 ],
@@ -437,13 +438,13 @@
                   {
                     "isGenerated": true,
                     "sources": [
-                      "build/CMakeFiles/ExperimentalUpdate",
-                      "build/CMakeFiles/ExperimentalUpdate.rule"
+                      "build/CMakeFiles/ContinuousBuild",
+                      "build/CMakeFiles/ContinuousBuild.rule"
                     ]
                   }
                 ],
-                "fullName": "ExperimentalUpdate",
-                "name": "ExperimentalUpdate",
+                "fullName": "ContinuousBuild",
+                "name": "ContinuousBuild",
                 "sourceDirectory": "C:/Users/toch/Desktop/OpenGL/exercises",
                 "type": "UTILITY"
               },
@@ -453,13 +454,13 @@
                   {
                     "isGenerated": true,
                     "sources": [
-                      "build/CMakeFiles/ExperimentalTest",
-                      "build/CMakeFiles/ExperimentalTest.rule"
+                      "build/CMakeFiles/ExperimentalSubmit",
+                      "build/CMakeFiles/ExperimentalSubmit.rule"
                     ]
                   }
                 ],
-                "fullName": "ExperimentalTest",
-                "name": "ExperimentalTest",
+                "fullName": "ExperimentalSubmit",
+                "name": "ExperimentalSubmit",
                 "sourceDirectory": "C:/Users/toch/Desktop/OpenGL/exercises",
                 "type": "UTILITY"
               },
@@ -469,29 +470,13 @@
                   {
                     "isGenerated": true,
                     "sources": [
-                      "build/CMakeFiles/ContinuousConfigure",
-                      "build/CMakeFiles/ContinuousConfigure.rule"
+                      "build/CMakeFiles/ExperimentalConfigure",
+                      "build/CMakeFiles/ExperimentalConfigure.rule"
                     ]
                   }
                 ],
-                "fullName": "ContinuousConfigure",
-                "name": "ContinuousConfigure",
-                "sourceDirectory": "C:/Users/toch/Desktop/OpenGL/exercises",
-                "type": "UTILITY"
-              },
-              {
-                "buildDirectory": "C:/Users/toch/Desktop/OpenGL/exercises/build",
-                "fileGroups": [
-                  {
-                    "isGenerated": true,
-                    "sources": [
-                      "build/CMakeFiles/ContinuousTest",
-                      "build/CMakeFiles/ContinuousTest.rule"
-                    ]
-                  }
-                ],
-                "fullName": "ContinuousTest",
-                "name": "ContinuousTest",
+                "fullName": "ExperimentalConfigure",
+                "name": "ExperimentalConfigure",
                 "sourceDirectory": "C:/Users/toch/Desktop/OpenGL/exercises",
                 "type": "UTILITY"
               },
@@ -526,13 +511,29 @@
                 "name": "ContinuousSubmit",
                 "sourceDirectory": "C:/Users/toch/Desktop/OpenGL/exercises",
                 "type": "UTILITY"
+              },
+              {
+                "buildDirectory": "C:/Users/toch/Desktop/OpenGL/exercises/build",
+                "fileGroups": [
+                  {
+                    "isGenerated": true,
+                    "sources": [
+                      "build/CMakeFiles/ContinuousTest",
+                      "build/CMakeFiles/ContinuousTest.rule"
+                    ]
+                  }
+                ],
+                "fullName": "ContinuousTest",
+                "name": "ContinuousTest",
+                "sourceDirectory": "C:/Users/toch/Desktop/OpenGL/exercises",
+                "type": "UTILITY"
               }
             ]
           }
         ]
       }
     ],
-    "cookie": "0.19461312440870882",
+    "cookie": "0.6070645361193163",
     "inReplyTo": "codemodel",
     "type": "reply"
   }

@@ -5,7 +5,7 @@ std::shared_ptr<RawModel> Loader::loadToVAO(const void *position, const void *co
     VertexArray *vao = new VertexArray();
     vao->Bind();
     
-    VertexBuffer *vbo = new VertexBuffer(position, sizeof(float) * 2 * 4);
+    std::shared_ptr<VertexBuffer> vbo(new VertexBuffer(position, sizeof(float) * 2 * 4, "position"));
     VertexBufferLayout layout;
     layout.Push<float>(2);
     vao->AddBuffer(vbo, layout);

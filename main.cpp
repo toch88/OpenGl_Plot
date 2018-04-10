@@ -13,40 +13,50 @@
 #include <cmath>
 #include <array>
 #include <iostream>
-#include <future>
 
-double time2 = 0.016;
+double prev_tick = 0;
 double tick = 0;
+double deltaTime = 0;
+double posX = 0;
+double posY = 0;
 
 int main(void)
 {
+
     {
         DisplayManager &dispMngr = DisplayManager::getInstance();
         dispMngr.startup({800, 600});
-
         Renderer renderer;
-        LineSegment line({0.0, 0.0}, {0.5, 0.5});
+        // TexturedModel point({0.5f, 0.5f});
+        // TexturedModel point2({0.5f, 0.5f});
+        // std::cout << point.rawModel->getVAO()->getVBO("position")->name << std::endl;
+         LineSegment line({0.0, 0.0}, {0.5, 0.5});
+        
 
         /* Loop until the user closes the window */
         while (!glfwWindowShouldClose(dispMngr.GetWindow()))
         {
-            tick = glfwGetTime();
-            if (tick > time2)
-            {
-                tick = 0;
-                glfwSetTime(0);
-                renderer.Clear();
-                line.SetAngle(++line.angleInDeg);
-                line.Update();
-                for (std::shared_ptr<TexturedModel> &point : line.points)
-                {
-                    renderer.Draw(point);
-                }
-                glfwSwapBuffers(dispMngr.GetWindow());
 
-                /* Poll for and process events */
-                glfwPollEvents();
+            renderer.Clear();
+            // point.rawModel->getVAO()->getVBO("position")->Update(point.createVertexPosition({posX += 0.001, 0})._M_elems);
+            // point2.rawModel->getVAO()->getVBO("position")->Update(point2.createVertexPosition({0, posY += 0.001})._M_elems);
+            // renderer.Draw(point);
+            // renderer.Draw(point2);          
+
+
+            line.SetAngle(++line.angleInDeg);
+            if(line.angleInDeg==360){
+                line.angleInDeg=0;
             }
+            line.Update();
+            for (std::shared_ptr<TexturedModel> &point : line.points)
+            {
+                renderer.Draw(point);
+            }
+
+            glfwSwapBuffers(dispMngr.GetWindow());
+            /* Poll for and process events */
+            glfwPollEvents();
         }
         glfwTerminate();
     }

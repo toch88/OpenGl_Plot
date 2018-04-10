@@ -4,19 +4,21 @@
 #include "VertexBufferLayout.h"
 #include <map>
 #include <algorithm>
+#include <memory>
 
 class VertexArray
 {
 private:
   unsigned int _RendererID;
   unsigned int _currentAttrID;
-  std::map<VertexBuffer*, VertexBufferLayout>* _bufforsMap;
+  std::map<std::shared_ptr<VertexBuffer>, VertexBufferLayout> _bufforsMap;
 
 public:
   VertexArray();
   ~VertexArray();
 
-  void AddBuffer(VertexBuffer* vb, const VertexBufferLayout &layout);
+  void AddBuffer(std::shared_ptr<VertexBuffer> vbo, const VertexBufferLayout &layout);
+  std::shared_ptr<VertexBuffer> getVBO(const std::string& nameToCompare);
 
   void Bind() const;
   void Unbind();

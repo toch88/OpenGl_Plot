@@ -12,7 +12,7 @@ TexturedModel::TexturedModel(const glm::vec2 &position)
 
     this->rawModel = loader.loadToVAO<float>(arrayPosition);
 
-    VertexBuffer *vbo_texture = new VertexBuffer(textCord, sizeof(float) * 2 * 4);
+    std::shared_ptr<VertexBuffer> vbo_texture(new VertexBuffer(textCord, sizeof(float) * 2 * 4, "texture"));
     VertexBufferLayout VertexTextureLayout;
     VertexTextureLayout.Push<float>(2);
     this->rawModel->getVAO()->AddBuffer(vbo_texture, VertexTextureLayout);

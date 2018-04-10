@@ -42,8 +42,7 @@ void LineSegment::prepareFactors()
 
 void LineSegment::Update()
 {
-    this->points.clear();
-    this->preparePoints();
+    this->updatePoints();
 }
 
 void LineSegment::SetAngle(double angle)
@@ -53,9 +52,13 @@ void LineSegment::SetAngle(double angle)
     this->prepareFactors();
 }
 
-void LineSegment::updatePoints(){
-    for(std::shared_ptr<TexturedModel>& point:this->points){
-       
+void LineSegment::updatePoints()
+{
+    unsigned int it = 0;
+    for (std::shared_ptr<TexturedModel> &point : this->points)
+    {
+        point->rawModel->getVAO()->getVBO("position")->Update(point->createVertexPosition({(float)(it * this->factor.x), (float)(it * this->factor.y)})._M_elems);
+        it++;
     }
 }
 
