@@ -1,6 +1,11 @@
+#pragma once
 #include <GL/glew.h>
 #include <GL/GL.h>
+
+
 #include <iostream>
+#include <memory>
+
 class TextureWrapper
 {
   private:

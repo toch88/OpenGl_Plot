@@ -2,9 +2,9 @@
 
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
-#include <iostream>
-#include "vendor/glm/glm.hpp"
+#include <memory>
 #include "ResourceManager.h"
+#include "./vendor/glm/glm.hpp"
 
 void APIENTRY openglCallbackFunction(
     GLenum source,
@@ -21,7 +21,7 @@ class DisplayManager
     GLFWwindow *_window;
     unsigned int init();
     void enableDebug();
-    void prepare();    
+    void prepare();
     //Singleton so we have to disable all of public default constructor
     DisplayManager();
     DisplayManager(DisplayManager const &);
@@ -39,7 +39,6 @@ class DisplayManager
 
     ~DisplayManager();
     virtual void startup(glm::vec2 wndSize);
-   
 
     inline GLFWwindow *GetWindow() { return this->_window; }
 };

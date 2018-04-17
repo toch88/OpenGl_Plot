@@ -57,6 +57,8 @@ void DisplayManager::prepare()
     glEnable(GL_BLEND);
     this->LoadResource();
 }
+    
+
 
 void DisplayManager::LoadResource()
 {

@@ -4,12 +4,12 @@
 #include "RawModel.h"
 #include "VertexArray.h"
 #include "IndexBuffer.h"
-#include "Shader.h"
 #include <iostream>
+#include "Shader.h"
 #include <memory>
 #include "TexturedModel.h"
 #include "ResourceManager.h"
-#include "Grid.h"
+//#include "Grid.h"
 
 
 class Renderer
@@ -20,7 +20,7 @@ class Renderer
     void Draw(TexturedModel& texturedModel);
     void Draw(std::shared_ptr<RawModel> vao) const;
     void Draw(std::shared_ptr<TexturedModel> texturedModel);
-    void Draw(Grid& grid);
+    // void Draw(Grid& grid);
 
    
   private:

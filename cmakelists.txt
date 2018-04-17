@@ -8,17 +8,22 @@ include_directories(/src)
 include_directories(/src/vendor/stb_image)
 include_directories(/src/vendor/glm)
 
+link_directories(C:/msys64/usr/lib/w32api/)
+link_directories(C:/msys64/mingw64/lib/)
+
+add_library(OPENGL STATIC IMPORTED)
+set_target_properties(OPENGL PROPERTIES
+  IMPORTED_LOCATION "C:/msys64/usr/lib/w32api/libopengl32.a"  
+)
+# find_library(OPENGL opengl32)
+ find_library(GLFW NAMES libglfw3.a PATHS C:/msys64/mingw64/lib/libglfw3)
+# find_library(GLEW glew32 C:/msys64/mingw64/lib/)
 
 
-
-find_library(OPENGL libopengl32.a C:/msys64/usr/lib/w32api)
-find_library(GLFW3 libglfw3.a C:/msys64/mingw64/lib)
-find_library(GLEW glew32 C:/msys64/mingw64/lib)
-
-add_definitions(-DGNinja)
 add_definitions(-DGLEW_STATIC)
 add_definitions(-D_WIN32=1)
 add_definitions(-Dfpermissive)
+
 
 set(SOURCE_DIR src/)
 set(SOURCE 
@@ -38,13 +43,19 @@ ${SOURCE_DIR}ResourceManager.cpp
 ${SOURCE_DIR}LineSegment.cpp
 ${SOURCE_DIR}Grid.cpp
 ${SOURCE_DIR}TextureWrapper.cpp
+${SOURCE_DIR}EventDispatcher.cpp
+${SOURCE_DIR}TimerListener.cpp
+${SOURCE_DIR}Timer.cpp
 )
 
+# ${OPENGL} ${GLFW3} ${GLEW}
 add_executable(One_Triangle main.cpp ${SOURCE})
-message("======${OPENGL} ===========")
-message("------${GLFW3} ------------")
-message("------${GLEW} -------------")
-target_link_libraries(One_Triangle ${OPENGL} ${GLFW3} ${GLEW})
+# message("======${OPENGL} ===========")
+# message("------${GLFW3} ------------")
+# message("------${GLEW} -------------")
+target_link_libraries(One_Triangle libglfw3.a)
+target_link_libraries(One_Triangle OPENGL)
+target_link_libraries(One_Triangle libglew32.a)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})

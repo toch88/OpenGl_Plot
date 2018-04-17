@@ -26,10 +26,6 @@ TexturedModel::TexturedModel(const glm::vec2 &position)
     this->shader->SetUniform1i("u_Texture", 0);
 }
 
-void TexturedModel::updatePosition(glm::vec2& pos){
-    
-}
-
 void TexturedModel::Bind()
 {   
     this->rawModel->BindModel();
@@ -42,6 +38,7 @@ std::array<float, 8> TexturedModel::createVertexPosition(const glm::vec2 &P)
 {
     float size = (sizeOfRetancle / 2);
     std::array<float, 8> array;
+    
 
     array[0] = P.x - size; //vo
     array[1] = P.y - size;

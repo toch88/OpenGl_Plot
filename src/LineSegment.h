@@ -27,7 +27,7 @@ class LineSegment{
     double angle, angleInDeg;
     double lenght;
     Position factor;
-    double density=500, pointQuantity;
+    double density=1000, pointQuantity;
     void SetAngle(double angle);
     void Update();
     LineSegment(glm::vec2 begin, glm::vec2 end);

@@ -8,9 +8,9 @@ Texture::Texture(const std::string &path)
     this->_LocalBuffer = stbi_load(path.c_str(), &(this->_width), &(this->_height), &(this->_BPP), 4);
 
     glGenTextures(1, &(this->texture._RendererID));
-   
     
-    glBindTexture(GL_TEXTURE_2D, this->texture._RendererID);
+    
+    glBindTexture(GL_TEXTURE_2D,this->texture._RendererID);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, this->_width, this->_height, 0, GL_RGBA, GL_UNSIGNED_BYTE, this->_LocalBuffer);
     glGenerateMipmap(GL_TEXTURE_2D);  //Generate mipmaps now!!!
    
